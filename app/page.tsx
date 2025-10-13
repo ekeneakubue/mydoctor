@@ -1,102 +1,107 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen flex flex-col">
+      {/* Navbar */}
+      <header className="sticky top-0 z-50 border-b border-black/10 dark:border-white/10 bg-background/80 backdrop-blur">
+        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+          <Link href="#" className="flex items-center gap-3">
+            <Image src="/vercel.svg" alt="CityCare logo" width={28} height={28} className="dark:invert" />
+            <span className="text-lg font-semibold tracking-tight">CityCare Hospital</span>
+          </Link>
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <Link href="#home" className="hover:underline underline-offset-4">Home</Link>
+            <Link href="#about" className="hover:underline underline-offset-4">About</Link>
+            <Link href="#services" className="hover:underline underline-offset-4">Services</Link>
+          </nav>
+          <div className="flex items-center gap-3">
+            <Link href="/login" className="inline-flex items-center rounded-md border border-black/10 dark:border-white/15 px-4 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10 transition">Login</Link>
+            <Link href="#about" className="md:hidden inline-flex items-center rounded-md bg-foreground text-background px-3 py-2 text-sm font-medium">Get Started</Link>
+          </div>
         </div>
+      </header>
+
+      <main id="home" className="flex-1">
+        {/* Hero - full width background carousel with overlay and content */}
+        <section className="relative w-full h-[70vh] sm:h-[80vh] overflow-hidden">
+          {/* Sliding images background */}
+          <div className="absolute inset-0 flex w-[100%] cc-carousel-track">
+            <div className="relative w-full shrink-0 grow-0">
+              <Image src="/images/1.jpeg" alt="Telemedicine" fill className="object-cover" />
+            </div>
+            <div className="relative w-full shrink-0 grow-0">
+              <Image src="/images/2.jpg" alt="Global access" fill className="object-cover" />
+            </div>
+            <div className="relative w-full shrink-0 grow-0">
+              <Image src="/images/3.avif" alt="Records management" fill className="object-cover" />
+            </div>
+          </div>
+
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+
+          {/* Content */}
+          <div className="relative z-10 mx-auto max-w-6xl h-full px-4 flex items-center">
+            <div className="max-w-2xl text-white">
+              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Your Health, Our Priority</h1>
+              <p className="mt-4 text-base/7 text-white/80">Connect with certified doctors, book online consultations, and manage records securely in one place.</p>
+              <div className="mt-8 flex items-center gap-4">
+                <Link id="get-started" href="#about" className="inline-flex items-center rounded-md bg-white text-black px-5 py-3 text-sm font-semibold hover:opacity-90 transition">Get Started</Link>
+                <Link href="#services" className="inline-flex items-center rounded-md border border-white/30 text-white px-5 py-3 text-sm font-semibold hover:bg-white/10 transition">Explore Services</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About */}
+        <section id="about" className="border-t border-black/10 dark:border-white/10 bg-black/[.02] dark:bg-white/[.03]">
+          <div className="mx-auto max-w-6xl px-4 py-16">
+            <div className="max-w-3xl">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">About CityCare</h2>
+              <p className="mt-4 text-black/70 dark:text-white/70">CityCare is a modern health consultation platform offering virtual visits, prescription refills, and specialist referrals. Our mission is to make quality healthcare accessible and convenient.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Services */}
+        <section id="services" className="mx-auto max-w-6xl px-4 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Our Services</h2>
+          <p className="mt-2 text-black/70 dark:text-white/70 max-w-2xl">Comprehensive care tailored to your needs. Connect with experienced professionals anytime, anywhere.</p>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "Online Doctor Consultation", desc: "Video calls with licensed physicians for primary care and advice." },
+              { title: "Specialist Referrals", desc: "Get referred to the right specialist quickly and seamlessly." },
+              { title: "Prescription Refills", desc: "Request and manage prescriptions with ease and security." },
+              { title: "Lab Test Booking", desc: "Schedule lab tests and receive results digitally." },
+              { title: "Mental Health Support", desc: "Access therapy and counseling from certified professionals." },
+              { title: "Health Records", desc: "Centralized, secure storage for your medical history." },
+            ].map((card) => (
+              <div key={card.title} className="rounded-xl border border-black/10 dark:border-white/15 p-6 bg-background/80">
+                <div className="flex items-start gap-3">
+                  <Image src="/file.svg" alt="Service icon" width={20} height={20} className="mt-1 dark:invert" />
+                  <div>
+                    <h3 className="text-base font-semibold">{card.title}</h3>
+                    <p className="mt-2 text-sm text-black/70 dark:text-white/70">{card.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="mt-auto border-t border-black/10 dark:border-white/10">
+        <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+          <p className="text-black/60 dark:text-white/60">© {new Date().getFullYear()} CityCare. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link href="#about" className="hover:underline underline-offset-4">About</Link>
+            <Link href="#services" className="hover:underline underline-offset-4">Services</Link>
+            <Link href="#home" className="hover:underline underline-offset-4">Home</Link>
+          </div>
+        </div>
       </footer>
     </div>
   );
