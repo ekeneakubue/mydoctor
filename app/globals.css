@@ -3,11 +3,27 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #171717;
+  --primary-foreground: #ffffff;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,6 +32,14 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #ededed;
+    --primary-foreground: #0a0a0a;
+    --muted: #262626;
+    --muted-foreground: #a3a3a3;
+    --accent: #262626;
+    --accent-foreground: #ededed;
+    --border: #262626;
+    --input: #262626;
   }
 }
 
@@ -36,4 +60,50 @@ body {
 .cc-carousel-track {
   animation: cc-carousel-x 18s ease-in-out infinite;
   will-change: transform;
+}
+
+/* Custom scrollbar for sidebar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Admin section larger fonts */
+main .space-y-6 h1 {
+  font-size: 1.75rem; /* 28px - increased from 24px */
+}
+
+main .space-y-6 h2 {
+  font-size: 1.375rem; /* 22px - increased from 18px */
+}
+
+main .space-y-6 h3 {
+  font-size: 1.125rem; /* 18px - increased from 16px */
+}
+
+main table {
+  font-size: 0.9375rem; /* 15px - increased from 14px */
+}
+
+main button,
+main input,
+main select,
+main textarea {
+  font-size: 0.9375rem; /* 15px - increased from 14px */
+}
+
+main p {
+  font-size: 0.9375rem; /* 15px - increased from 14px */
 }

@@ -2,13 +2,17 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// prisma/schema.prisma
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 enum Role {
-  USER
+  PATIENT
+  STAFF
   ADMIN
 }
 
@@ -17,12 +21,127 @@ model User {
   email        String   @unique
   name         String?
   passwordHash String
+  phone        String?
   image        String?
-  role         Role     @default(USER)
+  role         Role     @default(STAFF)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
   @@map("users")
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
 
+
+model Doctor {
+  id              String   @id @default(uuid()) @db.Uuid
+  firstName       String
+  lastName        String
+  specialization  String
+  licenseNumber   String   @unique
+  phone           String
+  email           String   @unique
+  passwordHash    String
+  address         String
+  department      String?
+  availability    Json?
+  
+  isActive        Boolean  @default(true)
+  
+  appointments    Appointment[]
+  medicalRecords  MedicalRecord[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("doctors")
+}
+
+model Patient {
+  id            String    @id @default(uuid()) @db.Uuid
+  firstName     String
+  lastName      String
+  email         String    @unique
+  passwordHash  String
+  phone         String
+  dateOfBirth   DateTime?
+  gender        Gender?
+  address       String?
+  
+  // Medical Info
+  bloodType     String?
+  allergies     String?
+  medicalHistory String?
+
+  // Insurance
+  insuranceProvider String?
+  insuranceNumber   String?
+
+  // Emergency Contact
+  emergencyContactName  String?
+  emergencyContactPhone String?
+
+  // Metadata
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastVisit     DateTime?
+  
+  isActive      Boolean   @default(true)
+  
+  appointments  Appointment[]
+  medicalRecords MedicalRecord[]
+
+  @@map("patients")
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+model Appointment {
+  id              String             @id @default(uuid()) @db.Uuid
+  
+  patientId       String             @db.Uuid
+  patient         Patient            @relation(fields: [patientId], references: [id])
+  
+  doctorId        String             @db.Uuid
+  doctor          Doctor             @relation(fields: [doctorId], references: [id])
+  
+  appointmentDate DateTime
+  reason          String?
+  status          AppointmentStatus  @default(SCHEDULED)
+  notes           String?
+  
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@map("appointments")
+}
+
+model MedicalRecord {
+  id              String   @id @default(uuid()) @db.Uuid
+  
+  patientId       String   @db.Uuid
+  patient         Patient  @relation(fields: [patientId], references: [id])
+  
+  doctorId        String   @db.Uuid
+  doctor          Doctor   @relation(fields: [doctorId], references: [id])
+  
+  visitDate       DateTime @default(now())
+  diagnosis       String
+  prescription    String?
+  treatment       String?
+  notes           String?  @db.Text
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("medical_records")
+}
