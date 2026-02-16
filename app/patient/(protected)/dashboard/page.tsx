@@ -31,101 +31,99 @@ export default async function PatientDashboard() {
 
     return (
         <div className="space-y-8">
-            {/* Welcome Section */}
-            <div>
-                <h1 className="text-2xl font-bold text-gray-900">
+            <div className="rounded-3xl border border-emerald-200 bg-gradient-to-r from-emerald-600 to-teal-600 p-8 text-white shadow-xl">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-100">Patient dashboard</p>
+                <h1 className="mt-2 text-3xl font-black tracking-tight">
                     Welcome back, {user.name?.split(" ")[0]}!
                 </h1>
-                <p className="text-gray-500 mt-1">
-                    Here is an overview of your health and schedule.
+                <p className="mt-2 text-emerald-100">
+                    Here is your care summary with quick access to appointments, doctors, and records.
                 </p>
             </div>
 
-            {/* Stats / Quick Actions Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
                     <div className="flex items-center justify-between mb-4">
-                        <div className="bg-white/20 p-2 rounded-lg">
-                            <Calendar size={24} />
+                        <div className="rounded-xl bg-blue-100 p-2.5 text-blue-700">
+                            <Calendar size={22} />
                         </div>
-                        <span className="text-blue-100 text-sm font-medium">Upcoming</span>
+                        <span className="text-blue-700 text-xs font-semibold uppercase tracking-wider">Upcoming</span>
                     </div>
-                    <h3 className="text-2xl font-bold">{upcomingAppointments.length}</h3>
-                    <p className="text-blue-100/80 text-sm">Appointments Scheduled</p>
+                    <h3 className="text-3xl font-black tracking-tight text-slate-900">{upcomingAppointments.length}</h3>
+                    <p className="text-slate-500 text-sm">Appointments Scheduled</p>
                     <Link
                         href="/patient/appointments"
-                        className="inline-flex items-center gap-2 mt-4 text-sm font-medium hover:text-blue-100 transition-colors"
+                        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800"
                     >
                         View Schedule <ArrowRight size={16} />
                     </Link>
                 </div>
 
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
                     <div className="flex items-center justify-between mb-4">
-                        <div className="bg-green-50 p-2 rounded-lg text-green-600">
+                        <div className="rounded-xl bg-emerald-100 p-2.5 text-emerald-700">
                             <Stethoscope size={24} />
                         </div>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900">Find a Doctor</h3>
-                    <p className="text-gray-500 text-sm mt-1">
+                    <h3 className="text-lg font-bold text-slate-900">Find a Doctor</h3>
+                    <p className="text-slate-500 text-sm mt-1">
                         Book consultations with top specialists.
                     </p>
                     <Link
                         href="/patient/doctors"
-                        className="inline-flex items-center gap-2 mt-4 text-sm font-medium text-green-600 hover:text-green-700 transition-colors"
+                        className="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
                     >
                         Browse Doctors <ArrowRight size={16} />
                     </Link>
                 </div>
 
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
                     <div className="flex items-center justify-between mb-4">
-                        <div className="bg-purple-50 p-2 rounded-lg text-purple-600">
+                        <div className="rounded-xl bg-violet-100 p-2.5 text-violet-700">
                             <FileText size={24} />
                         </div>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900">Medical Records</h3>
-                    <p className="text-gray-500 text-sm mt-1">
+                    <h3 className="text-lg font-bold text-slate-900">Medical Records</h3>
+                    <p className="text-slate-500 text-sm mt-1">
                         Access your history and prescriptions.
                     </p>
                     <Link
                         href="/patient/records"
-                        className="inline-flex items-center gap-2 mt-4 text-sm font-medium text-purple-600 hover:text-purple-700 transition-colors"
+                        className="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-violet-700 hover:text-violet-800 transition-colors"
                     >
                         View History <ArrowRight size={16} />
                     </Link>
                 </div>
             </div>
 
-            {/* Upcoming Appointments List */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-                <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-                    <h2 className="text-lg font-bold text-gray-900">Upcoming Appointments</h2>
-                    <Link href="/patient/appointments" className="text-sm text-blue-600 hover:text-blue-700 font-medium">View All</Link>
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="flex items-center justify-between border-b border-slate-200 p-6">
+                    <h2 className="text-lg font-bold text-slate-900">Upcoming Appointments</h2>
+                    <Link href="/patient/appointments" className="text-sm font-semibold text-blue-700 hover:text-blue-800">View All</Link>
                 </div>
-                <div className="divide-y divide-gray-100">
+                <div className="divide-y divide-slate-100">
                     {upcomingAppointments.length === 0 ? (
-                        <div className="p-8 text-center text-gray-500 text-sm">
+                        <div className="p-8 text-center text-slate-500 text-sm">
                             No upcoming appointments scheduled.
                         </div>
                     ) : (
                         upcomingAppointments.map((apt) => (
-                            <div key={apt.id} className="p-6 hover:bg-gray-50 transition-colors flex items-center justify-between">
+                            <div key={apt.id} className="flex items-center justify-between p-6 transition-colors hover:bg-slate-50">
                                 <div className="flex items-center gap-4">
-                                    <div className="bg-blue-50 text-blue-600 font-bold p-3 rounded-lg text-center min-w-[60px]">
+                                    <div className="min-w-[60px] rounded-lg bg-blue-100 p-3 text-center font-bold text-blue-700">
                                         <div className="text-xs uppercase">{apt.appointmentDate.toLocaleString('default', { month: 'short' })}</div>
                                         <div className="text-xl">{apt.appointmentDate.getDate()}</div>
                                     </div>
                                     <div>
-                                        <h4 className="font-semibold text-gray-900">Dr. {apt.doctor.firstName} {apt.doctor.lastName}</h4>
-                                        <p className="text-sm text-gray-500">{apt.reason || "General Consultation"}</p>
-                                        <div className="flex items-center gap-2 text-xs text-gray-400 mt-1">
+                                        <h4 className="font-semibold text-slate-900">Dr. {apt.doctor.firstName} {apt.doctor.lastName}</h4>
+                                        <p className="text-sm text-slate-500">{apt.reason || "General Consultation"}</p>
+                                        <div className="mt-1 flex items-center gap-2 text-xs text-slate-400">
                                             <ClockIcon />
                                             {apt.appointmentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         </div>
                                     </div>
                                 </div>
-                                <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">
                                     Confirmed
                                 </span>
                             </div>

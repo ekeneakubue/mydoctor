@@ -177,7 +177,7 @@ Try logging in:
 
 1. Visit http://localhost:3000/login
 2. Enter admin credentials:
-   - Email: `admin@citycare.com`
+   - Email: `admin@mydoctor.com`
    - Password: `admin123`
 3. ✅ Should login successfully
 4. ✅ Redirected to admin dashboard (/admin)
@@ -258,7 +258,7 @@ After login, these cookies are set:
 ## Sample Credentials After Seed
 
 ### Admin (System User)
-- Email: `admin@citycare.com`
+- Email: `admin@mydoctor.com`
 - Password: `admin123`
 - Table: `users`
 - Role: ADMIN
@@ -275,7 +275,7 @@ All patients use password: `patient123`
 ### Sample Doctors
 All doctors use password: `doctor123`
 
-- Various `dr.*@citycare.com` emails (Table: `doctors`)
+- Various `dr.*@mydoctor.com` emails (Table: `doctors`)
 
 ## Migration Checklist
 

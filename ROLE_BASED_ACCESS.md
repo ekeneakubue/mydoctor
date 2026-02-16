@@ -1,10 +1,10 @@
 # Role-Based Access Control (RBAC)
 
-Complete guide to the role-based access control system in CityCare.
+Complete guide to the role-based access control system in MyDoctor.
 
 ## Overview
 
-CityCare implements a three-tier role system with automatic route protection and role-based redirects. The system ensures users only access features appropriate for their role.
+MyDoctor implements a three-tier role system with automatic route protection and role-based redirects. The system ensures users only access features appropriate for their role.
 
 ## User Roles
 
@@ -333,7 +333,7 @@ export async function signup(formData: FormData) {
 
 1. **Use seeded admin**:
    ```
-   Email: admin@citycare.com
+   Email: admin@mydoctor.com
    Password: admin123
    ```
 

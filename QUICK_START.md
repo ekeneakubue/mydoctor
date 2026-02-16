@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get your CityCare application up and running in 5 minutes!
+Get your MyDoctor application up and running in 5 minutes!
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ npm run prisma:seed
 ```
 
 This creates:
-- 1 Admin user (admin@citycare.com)
+- 1 Admin user (admin@mydoctor.com)
 - 5 Sample patients
 - 6 Sample doctors
 
@@ -55,7 +55,7 @@ The application will be available at http://localhost:3000
 
 1. Visit http://localhost:3000/login
 2. Enter credentials:
-   - Email: `admin@citycare.com`
+   - Email: `admin@mydoctor.com`
    - Password: `admin123`
 3. Click "Sign in"
 4. ✅ You're now in the admin dashboard!
@@ -163,7 +163,7 @@ npm run dev -- -p 3001
 ### Login not working
 
 1. Make sure you ran `npm run prisma:seed`
-2. Check credentials: `admin@citycare.com` / `admin123`
+2. Check credentials: `admin@mydoctor.com` / `admin123`
 3. Open browser console (F12) to see error messages
 4. Clear cookies and try again
 

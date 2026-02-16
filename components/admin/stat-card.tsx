@@ -10,15 +10,15 @@ interface StatCardProps {
 
 export function StatCard({ label, value, icon: Icon, trend, trendUp }: StatCardProps) {
     return (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg">
             <div className="flex items-center justify-between mb-4">
-                <div className="p-2 bg-blue-50 rounded-lg">
-                    <Icon className="w-6 h-6 text-blue-600" />
+                <div className="rounded-xl bg-violet-100 p-2.5">
+                    <Icon className="h-6 w-6 text-violet-700" />
                 </div>
                 {trend && (
                     <span
-                        className={`text-xs font-medium px-2 py-1 rounded-full ${trendUp
-                                ? "bg-green-100 text-green-700"
+                        className={`rounded-full px-2.5 py-1 text-xs font-semibold ${trendUp
+                                ? "bg-emerald-100 text-emerald-800"
                                 : "bg-red-100 text-red-700"
                             }`}
                     >
@@ -26,8 +26,8 @@ export function StatCard({ label, value, icon: Icon, trend, trendUp }: StatCardP
                     </span>
                 )}
             </div>
-            <h3 className="text-gray-500 text-sm font-medium mb-1">{label}</h3>
-            <p className="text-2xl font-bold text-gray-900">{value}</p>
+            <h3 className="mb-1 text-sm font-semibold text-slate-500">{label}</h3>
+            <p className="text-3xl font-black tracking-tight text-slate-900">{value}</p>
         </div>
     );
 }

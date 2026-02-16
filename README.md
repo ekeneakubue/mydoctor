@@ -1,4 +1,4 @@
-# CityCare - Healthcare Management System
+# MyDoctor - Healthcare Management System
 
 A modern healthcare management system built with Next.js, Prisma, and PostgreSQL.
 
@@ -32,7 +32,7 @@ npm install
 
 ```env
 DATABASE_URL="your-database-url"
-DEMO_ADMIN_EMAIL="admin@citycare.com"
+DEMO_ADMIN_EMAIL="admin@mydoctor.com"
 DEMO_ADMIN_PASSWORD="admin123"
 DEMO_ADMIN_NAME="Admin User"
 ```
@@ -62,7 +62,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 After running the seed script, you can log in with:
 
-- **Email:** admin@citycare.com
+- **Email:** admin@mydoctor.com
 - **Password:** admin123
 
 Access the login page at [http://localhost:3000/login](http://localhost:3000/login)

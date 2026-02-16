@@ -75,10 +75,10 @@ export function PatientsClient({ patients }: PatientsClientProps) {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Patients</h1>
-                    <p className="text-gray-500 mt-1">Manage patient records and history</p>
+                    <h1 className="text-2xl font-black tracking-tight text-slate-900">Patients</h1>
+                    <p className="mt-1 text-slate-500">Manage patient records and history</p>
                 </div>
-                <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-sm font-medium">
+                <button className="flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-violet-700">
                     <Plus size={18} />
                     New Patient
                 </button>
@@ -139,25 +139,25 @@ export function PatientsClient({ patients }: PatientsClientProps) {
                 </div>
             )}
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="p-4 border-b border-gray-100 flex flex-col sm:flex-row gap-4">
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="flex flex-col gap-4 border-b border-slate-200 p-4 sm:flex-row">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                         <input
                             type="text"
                             placeholder="Search patients by name, ID or phone..."
-                            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                            className="w-full rounded-xl border border-slate-300 py-2 pl-10 pr-4 text-slate-700 outline-none transition-all focus:border-violet-400 focus:ring-2 focus:ring-violet-200"
                         />
                     </div>
-                    <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors font-medium">
+                    <button className="flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">
                         <Filter size={18} />
                         Filters
                     </button>
                 </div>
 
                 <div className="overflow-x-auto">
-                    <table className="w-full text-left text-sm text-gray-500">
-                        <thead className="bg-gray-50 text-xs uppercase text-gray-400 font-medium tracking-wider">
+                    <table className="w-full text-left text-sm text-slate-500">
+                        <thead className="bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-400">
                             <tr>
                                 <th className="px-6 py-4 font-semibold">Name</th>
                                 <th className="px-6 py-4 font-semibold">Age</th>
@@ -168,28 +168,28 @@ export function PatientsClient({ patients }: PatientsClientProps) {
                                 <th className="px-6 py-4 text-right font-semibold">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-100 bg-white">
+                        <tbody className="divide-y divide-slate-100 bg-white">
                             {patients.length === 0 ? (
                                 <tr>
                                     <td colSpan={7} className="px-6 py-12 text-center">
                                         <div className="flex flex-col items-center gap-2">
-                                            <p className="text-gray-500 text-sm">No patients found</p>
-                                            <p className="text-gray-400 text-xs">Add your first patient to get started</p>
+                                            <p className="text-sm text-slate-500">No patients found</p>
+                                            <p className="text-xs text-slate-400">Add your first patient to get started</p>
                                         </div>
                                     </td>
                                 </tr>
                             ) : (
                                 patients.map((patient) => (
-                                    <tr key={patient.id} className="hover:bg-gray-50 transition-colors group">
-                                        <td className="px-6 py-4 font-medium text-gray-900 flex items-center gap-3 whitespace-nowrap">
-                                            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                                    <tr key={patient.id} className="group transition-colors hover:bg-slate-50">
+                                        <td className="flex items-center gap-3 whitespace-nowrap px-6 py-4 font-semibold text-slate-900">
+                                            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 text-sm font-bold text-white shadow-sm">
                                                 {getInitials(patient.firstName, patient.lastName)}
                                             </div>
                                             {patient.firstName} {patient.lastName}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">{patient.dateOfBirth ? calculateAge(patient.dateOfBirth) : "-"}</td>
                                         <td className="px-6 py-4 whitespace-nowrap capitalize">{patient.gender ? patient.gender.toLowerCase() : "-"}</td>
-                                        <td className="px-6 py-4 text-gray-900 whitespace-nowrap font-medium">{patient.phone}</td>
+                                        <td className="whitespace-nowrap px-6 py-4 font-semibold text-slate-900">{patient.phone}</td>
                                         <td className="px-6 py-4 whitespace-nowrap">{formatDate(patient.lastVisit)}</td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${
@@ -204,13 +204,13 @@ export function PatientsClient({ patients }: PatientsClientProps) {
                                             <div className="flex items-center justify-end gap-3">
                                                 <button 
                                                     onClick={() => handleViewRecords(patient)}
-                                                    className="text-blue-600 hover:text-blue-800 font-medium hover:underline text-sm transition-colors"
+                                                    className="text-sm font-semibold text-violet-700 transition-colors hover:text-violet-800 hover:underline"
                                                 >
                                                     View Records
                                                 </button>
                                                 <button 
                                                     onClick={() => handleDeleteClick(patient)}
-                                                    className="text-red-600 hover:text-red-800 font-medium hover:underline text-sm transition-colors"
+                                                    className="text-sm font-semibold text-red-600 transition-colors hover:text-red-800 hover:underline"
                                                 >
                                                     Delete
                                                 </button>
@@ -225,7 +225,7 @@ export function PatientsClient({ patients }: PatientsClientProps) {
 
                 {/* Pagination */}
                 {patients.length > 0 && (
-                    <div className="p-4 border-t border-gray-100 flex items-center justify-between text-sm text-gray-500 bg-gray-50/50">
+                    <div className="flex items-center justify-between border-t border-slate-200 bg-slate-50/70 p-4 text-sm text-slate-500">
                         <span>Showing 1 to {patients.length} of {patients.length} patients</span>
                         <div className="flex gap-2">
                             <button disabled className="px-3 py-1 border border-gray-200 rounded-md hover:bg-white bg-white shadow-sm disabled:opacity-50 transition-all font-medium text-gray-700">Previous</button>

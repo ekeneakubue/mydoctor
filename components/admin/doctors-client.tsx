@@ -74,12 +74,12 @@ export function DoctorsClient({ doctors }: DoctorsClientProps) {
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Doctors</h1>
-                    <p className="text-gray-500 mt-1">Manage your medical staff</p>
+                    <h1 className="text-2xl font-black tracking-tight text-slate-900">Doctors</h1>
+                    <p className="mt-1 text-slate-500">Manage your medical staff</p>
                 </div>
                 <button 
                     onClick={() => setIsCreateModalOpen(true)}
-                    className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-sm font-medium"
+                    className="flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-violet-700"
                 >
                     <Plus size={18} />
                     Add Doctor
@@ -149,22 +149,22 @@ export function DoctorsClient({ doctors }: DoctorsClientProps) {
             )}
 
             {/* Filter Bar */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row">
                 <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                     <input
                         type="text"
                         placeholder="Search by name, specialty, or license..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full rounded-xl border border-slate-300 py-2 pl-10 pr-4 text-slate-700 outline-none transition-all focus:border-violet-400 focus:ring-2 focus:ring-violet-200"
                     />
                 </div>
                 <div className="flex gap-3">
                     <select 
                         value={specialtyFilter}
                         onChange={(e) => setSpecialtyFilter(e.target.value)}
-                        className="px-4 py-2 border border-gray-200 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-slate-600 outline-none focus:border-violet-400 focus:ring-2 focus:ring-violet-200"
                     >
                         <option value="ALL">All Specialties</option>
                         {specializations.map((spec) => (
@@ -175,16 +175,16 @@ export function DoctorsClient({ doctors }: DoctorsClientProps) {
             </div>
 
             {/* Doctors Grid */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {filteredDoctors.length === 0 ? (
-                    <div className="col-span-full bg-white p-12 rounded-xl shadow-sm border border-gray-100">
+                    <div className="col-span-full rounded-2xl border border-slate-200 bg-white p-12 shadow-sm">
                         <div className="flex flex-col items-center gap-3">
-                            <p className="text-gray-500 text-sm">
+                            <p className="text-sm text-slate-500">
                                 {searchTerm || specialtyFilter !== "ALL" 
                                     ? "No doctors found matching your search" 
                                     : "No doctors found"}
                             </p>
-                            <p className="text-gray-400 text-xs">
+                            <p className="text-xs text-slate-400">
                                 {searchTerm || specialtyFilter !== "ALL"
                                     ? "Try adjusting your filters"
                                     : "Add your first doctor to get started"}
@@ -193,9 +193,9 @@ export function DoctorsClient({ doctors }: DoctorsClientProps) {
                     </div>
                 ) : (
                     filteredDoctors.map((doctor) => (
-                        <div key={doctor.id} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
+                        <div key={doctor.id} className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg">
                             <div className="flex items-start justify-between mb-4">
-                                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-lg">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-violet-100 text-lg font-bold text-violet-700">
                                     {getInitials(doctor.firstName, doctor.lastName)}
                                 </div>
                                 <span className={`px-2 py-1 text-xs font-medium rounded-full ${
@@ -208,30 +208,30 @@ export function DoctorsClient({ doctors }: DoctorsClientProps) {
                             </div>
 
                             <div className="mb-4">
-                                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                    <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-700">
                                     Dr. {doctor.firstName} {doctor.lastName}
                                 </h3>
-                                <p className="text-sm text-gray-500">{doctor.specialization}</p>
+                                <p className="text-sm text-slate-500">{doctor.specialization}</p>
                                 {doctor.department && (
-                                    <p className="text-xs text-gray-400 mt-1">{doctor.department}</p>
+                                    <p className="mt-1 text-xs text-slate-400">{doctor.department}</p>
                                 )}
                             </div>
 
-                            <div className="space-y-2 text-sm text-gray-600 mb-4">
-                                <div className="flex justify-between items-center bg-gray-50 p-2 rounded-lg">
-                                    <span className="text-xs font-medium text-gray-500 uppercase">License</span>
-                                    <span className="font-semibold text-gray-900 text-xs">{doctor.licenseNumber}</span>
+                            <div className="mb-4 space-y-2 text-sm text-slate-600">
+                                <div className="flex items-center justify-between rounded-lg bg-slate-50 p-2">
+                                    <span className="text-xs font-medium uppercase text-slate-500">License</span>
+                                    <span className="text-xs font-semibold text-slate-900">{doctor.licenseNumber}</span>
                                 </div>
-                                <div className="flex justify-between items-center bg-gray-50 p-2 rounded-lg">
-                                    <span className="text-xs font-medium text-gray-500 uppercase">Phone</span>
-                                    <span className="font-semibold text-gray-900 text-xs">{doctor.phone}</span>
+                                <div className="flex items-center justify-between rounded-lg bg-slate-50 p-2">
+                                    <span className="text-xs font-medium uppercase text-slate-500">Phone</span>
+                                    <span className="text-xs font-semibold text-slate-900">{doctor.phone}</span>
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-2">
                                 <button 
                                     onClick={() => handleEdit(doctor)}
-                                    className="px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors text-center"
+                                    className="rounded-lg bg-violet-50 px-3 py-2 text-center text-sm font-semibold text-violet-700 transition-colors hover:bg-violet-100"
                                 >
                                     Edit
                                 </button>
@@ -249,7 +249,7 @@ export function DoctorsClient({ doctors }: DoctorsClientProps) {
 
             {/* Results count */}
             {filteredDoctors.length > 0 && (
-                <div className="text-sm text-gray-500 text-center">
+                <div className="text-center text-sm text-slate-500">
                     Showing {filteredDoctors.length} of {doctors.length} doctors
                 </div>
             )}

@@ -1,4 +1,4 @@
-# Complete Clean Restart Script for CityCare
+# Complete Clean Restart Script for MyDoctor
 # Run this in PowerShell: .\COMPLETE_RESTART.ps1
 
 Write-Host "🛑 Step 1: Stopping all Node processes..." -ForegroundColor Yellow

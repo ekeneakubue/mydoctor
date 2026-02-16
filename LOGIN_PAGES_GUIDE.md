@@ -2,7 +2,7 @@
 
 ## Overview
 
-CityCare now has **three separate login portals** for different user types, each with its own unique design and theme.
+MyDoctor now has **three separate login portals** for different user types, each with its own unique design and theme.
 
 ## 🟢 Patient Login
 
@@ -35,7 +35,7 @@ CityCare now has **three separate login portals** for different user types, each
 **Purpose**: For doctors to manage patients and schedules
 
 **Login With**:
-- Email: `dr.sarah.johnson@citycare.com`
+- Email: `dr.sarah.johnson@mydoctor.com`
 - Password: `doctor123`
 
 ## 🟣 Admin Login
@@ -52,7 +52,7 @@ CityCare now has **three separate login portals** for different user types, each
 **Purpose**: For system administrators and staff
 
 **Login With**:
-- Email: `admin@citycare.com`
+- Email: `admin@mydoctor.com`
 - Password: `admin123`
 
 ## 🎨 Visual Design
@@ -204,7 +204,7 @@ if (request.nextUrl.pathname.startsWith('/admin') &&
 ## 📋 Sample Credentials
 
 ### Admin/Staff (users table)
-- `admin@citycare.com` / `admin123`
+- `admin@mydoctor.com` / `admin123`
 
 ### Patients (patients table)
 - `john.smith@email.com` / `patient123`
@@ -212,8 +212,8 @@ if (request.nextUrl.pathname.startsWith('/admin') &&
 - (3 more sample patients)
 
 ### Doctors (doctors table)
-- `dr.sarah.johnson@citycare.com` / `doctor123`
-- `dr.michael.chen@citycare.com` / `doctor123`
+- `dr.sarah.johnson@mydoctor.com` / `doctor123`
+- `dr.michael.chen@mydoctor.com` / `doctor123`
 - (4 more sample doctors)
 
 ## 🚀 Features

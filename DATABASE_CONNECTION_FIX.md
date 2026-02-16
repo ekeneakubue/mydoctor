@@ -26,7 +26,7 @@ Neon may have changed your database endpoint.
 
 1. Visit https://console.neon.tech
 2. Log in to your account
-3. Find your project: `citycare` or similar
+3. Find your project: `mydoctor` or similar
 4. Click on the project
 5. The database should automatically wake up
 6. Wait 10-30 seconds
@@ -153,11 +153,11 @@ If Neon continues to have issues, switch to local PostgreSQL:
 
 1. Download from https://www.postgresql.org/download/windows/
 2. Install PostgreSQL 16
-3. Create database: `citycare`
+3. Create database: `mydoctor`
 4. Update `.env`:
 
 ```env
-DATABASE_URL="postgresql://postgres:your_password@localhost:5432/citycare"
+DATABASE_URL="postgresql://postgres:your_password@localhost:5432/mydoctor"
 ```
 
 Then:

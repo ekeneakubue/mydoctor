@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image";
 import Link from "next/link";
 import { Loader2, User, ArrowLeft } from "lucide-react";
 import { login } from "@/app/actions/auth";
@@ -27,6 +28,8 @@ export default function PatientLoginPage() {
         router.push("/admin");
       } else if (userType === 'doctor') {
         router.push("/doctor/dashboard");
+      } else if (userType === 'patient') {
+        router.push("/patient/dashboard");
       } else {
         router.push("/");
       }
@@ -38,90 +41,112 @@ export default function PatientLoginPage() {
   }
 
   return (
-    <main className="relative min-h-[100vh] flex items-center justify-center px-4 py-16 bg-gradient-to-br from-green-50 via-blue-50 to-white">
-      {/* Back to Home Link */}
-      <Link 
-        href="/"
-        className="absolute top-6 left-6 flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
-      >
-        <ArrowLeft size={20} />
-        <span className="font-medium">Back to Home</span>
-      </Link>
+    <main className="relative h-screen overflow-hidden bg-gradient-to-b from-emerald-50 via-white to-white p-3 sm:p-4">
+      <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-emerald-200/50 blur-3xl" />
+      <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-cyan-200/50 blur-3xl" />
 
-      <div className="relative z-10 w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 shadow-xl">
-        {/* Icon */}
-        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
-          <User className="text-white" size={32} />
-        </div>
+      <div className="relative z-10 mx-auto grid h-full w-full max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl lg:grid-cols-2">
+        <section className="relative hidden bg-emerald-900 p-8 text-white lg:flex lg:h-full lg:flex-col">
+          <Link href="/" className="inline-flex items-center gap-2 text-emerald-100 transition hover:text-white">
+            <ArrowLeft size={18} />
+            <span className="text-sm font-semibold">Back to Home</span>
+          </Link>
+          <div className="mt-8 space-y-3">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">Patient portal</p>
+            <h1 className="text-3xl font-black leading-tight">Welcome back to your care dashboard</h1>
+            <p className="max-w-md text-emerald-100">
+              Review appointments, lab updates, and treatment plans in one place with a newly redesigned patient interface.
+            </p>
+          </div>
+          <div className="relative mt-auto h-64 overflow-hidden rounded-2xl border border-white/20 bg-white/10">
+            <Image src="/images/login-patient.svg" alt="Patient portal illustration" fill className="object-cover" />
+          </div>
+        </section>
 
-        <div className="mb-6 text-center">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900">Patient Login</h1>
-          <p className="mt-2 text-sm text-gray-600">Access your medical records and appointments</p>
-        </div>
+        <section className="flex h-full items-center p-4 sm:p-6 lg:p-8">
+          <div className="mx-auto w-full max-w-md">
+            <div className="mb-4 flex items-center justify-between lg:hidden">
+              <Link href="/" className="inline-flex items-center gap-2 text-slate-600 transition hover:text-slate-900">
+                <ArrowLeft size={18} />
+                <span className="text-sm font-semibold">Back</span>
+              </Link>
+              <span className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700">Patient portal</span>
+            </div>
 
-        {error && (
-          <div className="mb-4 rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-800">
-            {error}
-          </div>
-        )}
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-lg">
+              <User className="text-white" size={24} />
+            </div>
 
-        <form onSubmit={handleSubmit} className="grid gap-4">
-          <div className="grid gap-2">
-            <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              placeholder="patient@example.com"
-              className="h-11 rounded-lg border border-gray-300 bg-white px-3 outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
-              disabled={loading}
-            />
-          </div>
-          <div className="grid gap-2">
-            <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              placeholder="••••••••"
-              className="h-11 rounded-lg border border-gray-300 bg-white px-3 outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
-              disabled={loading}
-            />
-          </div>
-          <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center gap-2 select-none text-gray-600">
-              <input type="checkbox" className="h-4 w-4 accent-green-600 rounded" disabled={loading} />
-              Remember me
-            </label>
-            <Link href="#" className="text-green-600 hover:text-green-700 font-medium hover:underline">Forgot password?</Link>
-          </div>
-          <button 
-            type="submit" 
-            className="mt-2 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold hover:from-green-700 hover:to-green-800 transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={loading}
-          >
-            {loading && <Loader2 className="animate-spin" size={18} />}
-            {loading ? "Signing in..." : "Sign in as Patient"}
-          </button>
-        </form>
+            <div className="mb-4">
+              <h2 className="text-2xl font-black tracking-tight text-slate-900">Patient Login</h2>
+              <p className="mt-1.5 text-sm text-slate-600">Access your appointments, prescriptions, and medical records.</p>
+            </div>
 
-        <div className="mt-6 text-center space-y-3">
-          <p className="text-sm text-gray-600">
-            Don&apos;t have an account? <Link href="/signup" className="font-medium text-green-600 hover:text-green-700 hover:underline">Sign up</Link>
-          </p>
-          <div className="flex items-center justify-center gap-2 text-xs text-gray-500 pt-2 border-t border-gray-100">
-            <span>Login as:</span>
-            <Link href="/doctor/login" className="text-blue-600 hover:underline font-medium">
-              Doctor
-            </Link>
-            <span>•</span>
-            <Link href="/admin-login" className="text-purple-600 hover:underline font-medium">
-              Admin
-            </Link>
+            {error && (
+              <div className="mb-3 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="grid gap-3">
+              <div className="grid gap-1.5">
+                <label htmlFor="email" className="text-sm font-semibold text-slate-700">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="patient@example.com"
+                  className="h-10 rounded-xl border border-slate-300 bg-white px-3 text-slate-800 outline-none transition-all focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                  disabled={loading}
+                />
+              </div>
+              <div className="grid gap-1.5">
+                <label htmlFor="password" className="text-sm font-semibold text-slate-700">Password</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  placeholder="••••••••"
+                  className="h-10 rounded-xl border border-slate-300 bg-white px-3 text-slate-800 outline-none transition-all focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                  disabled={loading}
+                />
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <label className="flex items-center gap-2 select-none text-slate-600">
+                  <input type="checkbox" className="h-4 w-4 rounded accent-emerald-600" disabled={loading} />
+                  Remember me
+                </label>
+                <Link href="#" className="font-semibold text-emerald-700 transition hover:text-emerald-800 hover:underline">Forgot password?</Link>
+              </div>
+              <button
+                type="submit"
+                className="mt-1 inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 font-semibold text-white shadow-md transition-all hover:from-emerald-700 hover:to-emerald-800 disabled:cursor-not-allowed disabled:opacity-50"
+                disabled={loading}
+              >
+                {loading && <Loader2 className="animate-spin" size={16} />}
+                {loading ? "Signing in..." : "Sign in as Patient"}
+              </button>
+            </form>
+
+            <div className="mt-4 space-y-2 text-center">
+              <p className="text-sm text-slate-600">
+                Don&apos;t have an account? <Link href="/signup" className="font-semibold text-emerald-700 hover:underline">Sign up</Link>
+              </p>
+              <div className="flex items-center justify-center gap-2 border-t border-slate-200 pt-2 text-xs text-slate-500">
+                <span>Login as:</span>
+                <Link href="/doctor/login" className="font-semibold text-blue-600 hover:underline">
+                  Doctor
+                </Link>
+                <span>•</span>
+                <Link href="/admin-login" className="font-semibold text-purple-600 hover:underline">
+                  Admin
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </main>
   );

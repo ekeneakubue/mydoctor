@@ -3,72 +3,118 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 
 export default function Home() {
+  const heroSlides = [
+    {
+      src: "/images/black-doctor-consultation-1.svg",
+      alt: "Black doctor consulting with a patient",
+      tag: "Telehealth",
+      title: "Care that meets you anywhere",
+      description:
+        "MyDoctor brings doctors, records, and appointments together in one secure place so your next consultation is always within reach.",
+    },
+    {
+      src: "/images/black-doctor-consultation-2.svg",
+      alt: "Black medical team collaborating in clinic",
+      tag: "Connected Team",
+      title: "One platform for patients and clinicians",
+      description:
+        "Patients, doctors, and admins stay aligned with real-time scheduling, streamlined communication, and consistent records.",
+    },
+    {
+      src: "/images/black-doctor-consultation-3.svg",
+      alt: "Black doctor reviewing patient data",
+      tag: "Secure Records",
+      title: "Health data that stays protected",
+      description:
+        "View histories, lab results, and treatment plans in a privacy-first dashboard built for modern healthcare operations.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
       <Navbar />
 
       <main id="home" className="flex-1">
-        {/* Hero - full width background carousel with overlay and content */}
-        <section className="relative w-full min-h-screen overflow-hidden">
-          {/* Sliding images background */}
-          <div className="absolute inset-0 flex w-[100%] cc-carousel-track">
-            <div className="relative w-full shrink-0 grow-0">
-              <Image src="/images/1.jpeg" alt="Telemedicine" fill className="object-cover" />
-            </div>
-            <div className="relative w-full shrink-0 grow-0">
-              <Image src="/images/2.jpg" alt="Global access" fill className="object-cover" />
-            </div>
-            <div className="relative w-full shrink-0 grow-0">
-              <Image src="/images/3.avif" alt="Records management" fill className="object-cover" />
-            </div>
-          </div>
-
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
-
-          {/* Content */}
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
-            <div className="max-w-4xl w-full text-white mx-auto">
-              <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight">Your Health, Our Priority</h1>
-              <p className="mt-6 text-lg sm:text-xl text-white/90 max-w-2xl mx-auto">Connect with certified doctors, book online consultations, and manage records securely in one place.</p>
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link id="get-started" href="#about" className="inline-flex items-center rounded-full bg-white text-black px-8 py-4 text-base font-bold hover:opacity-90 transition shadow-lg hover:shadow-xl hover:-translate-y-0.5">Get Started</Link>
-                <Link href="#services" className="inline-flex items-center rounded-full border-2 border-white/30 text-white px-8 py-4 text-base font-bold hover:bg-white/10 transition backdrop-blur-sm">Explore Services</Link>
+        <section className="relative min-h-screen overflow-hidden border-b border-slate-200 bg-gradient-to-b from-sky-50 via-white to-white">
+          <div className="absolute -left-40 top-10 h-96 w-96 rounded-full bg-sky-200/40 blur-3xl" />
+          <div className="absolute -right-40 top-10 h-96 w-96 rounded-full bg-indigo-200/40 blur-3xl" />
+          <div className="mx-auto max-w-7xl py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+            <div className="grid items-center gap-10 lg:grid-cols-2">
+              <div className="space-y-7">
+                <span className="inline-flex items-center rounded-full border border-sky-200 bg-sky-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">
+                  Smart healthcare platform
+                </span>
+                <h1 className="font-black leading-tight tracking-tight text-slate-900 sm:text-5xl">
+                  Redefined healthcare interfaces for every role
+                </h1>
+                <p className="max-w-2xl text-lg text-slate-600">
+                  Explore a cleaner, more modern MyDoctor experience with role-specific flows, improved readability, and updated visuals.
+                </p>
+                <div className="flex flex-wrap items-center gap-4">
+                  <Link
+                    id="get-started"
+                    href="/patient/login"
+                    className="inline-flex items-center rounded-full bg-slate-900 px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-800"
+                  >
+                    Patient Portal
+                  </Link>
+                  <Link
+                    href="#services"
+                    className="inline-flex items-center rounded-full border border-slate-300 bg-white px-7 py-3.5 text-sm font-bold text-slate-800 transition hover:border-slate-400 hover:bg-slate-100"
+                  >
+                    Explore Services
+                  </Link>
+                </div>
+              </div>
+              <div className="relative rounded-3xl border border-slate-200 bg-white p-4 shadow-2xl">
+                <div className="grid gap-4">
+                  {heroSlides.map((slide) => (
+                    <article
+                      key={slide.src}
+                      className="group grid gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-0.5 hover:border-sky-300 hover:bg-white sm:grid-cols-[180px_1fr]"
+                    >
+                      <div className="relative h-32 overflow-hidden rounded-xl border border-slate-200 bg-white">
+                        <Image src={slide.src} alt={slide.alt} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                      </div>
+                      <div className="space-y-2">
+                        <p className="text-xs font-bold uppercase tracking-[0.14em] text-sky-700">{slide.tag}</p>
+                        <h2 className="text-lg font-bold text-slate-900">{slide.title}</h2>
+                        <p className="text-sm leading-relaxed text-slate-600">{slide.description}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* About */}
-        <section id="about" className="min-h-screen flex items-center border-t border-black/10 dark:border-white/10 bg-black/[.02] dark:bg-white/[.03]">
-          <div className="mx-auto max-w-screen-2xl w-full px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight">About CityCare</h2>
-              <p className="text-lg text-black/70 dark:text-white/70 leading-relaxed">
-                CityCare is a modern health consultation platform offering virtual visits, prescription refills, and specialist referrals. Our mission is to make quality healthcare accessible and convenient.
+        <section id="about" className="border-b border-slate-200 bg-white">
+          <div className="mx-auto grid max-w-screen-2xl items-center gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:px-12 lg:py-24">
+            <div className="space-y-5">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">About MyDoctor</p>
+              <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-5xl">
+                Meeat and book appointment with proffesional Doctors in your area
+              </h2>
+              <p className="text-lg leading-relaxed text-slate-600">
+                MyDoctor supports video consultations, referrals, lab workflows, and long-term follow-up in one connected experience.
               </p>
-              <p className="text-lg text-black/70 dark:text-white/70 leading-relaxed">
-                We are dedicated to revolutionizing the patient experience through technology and compassion. Whether you need a quick consultation or long-term care management, our team of certified professionals is here to support your journey to better health.
+              <p className="text-lg leading-relaxed text-slate-600">
+                This redesign focuses on easier scanning, clearer hierarchy, and role-aware entry points so patients and healthcare teams reach the right tools faster.
               </p>
             </div>
-            <div className="relative w-full h-[400px] md:h-[600px] rounded-2xl overflow-hidden shadow-xl">
-              <Image
-                src="/images/4.jpg"
-                alt="About CityCare Team"
-                fill
-                className="object-cover"
-              />
+            <div className="relative h-[360px] overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-xl sm:h-[480px]">
+              <Image src="/images/about-clinic.svg" alt="MyDoctor clinic environment" fill className="object-cover" />
             </div>
           </div>
         </section>
 
-        {/* Services */}
-        <section id="services" className="min-h-screen flex flex-col justify-center py-20 bg-gray-50 dark:bg-zinc-900/50">
-          <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">World-Class Services</h2>
-              <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-                Comprehensive care tailored to your needs. Connect with experienced professionals anytime, anywhere through our integrated platform.
+        <section id="services" className="bg-slate-50 py-16 sm:py-24">
+          <div className="mx-auto max-w-screen-2xl px-5 sm:px-8 lg:px-12">
+            <div className="mx-auto mb-14 max-w-3xl text-center">
+              <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">World-class services with a modern visual system</h2>
+              <p className="mt-4 text-lg text-slate-600">
+                Every block is redesigned for clarity with compact descriptions, stronger contrast, and cleaner action flow.
               </p>
             </div>
 
@@ -117,13 +163,13 @@ export default function Home() {
                   )
                 },
               ].map((card, idx) => (
-                <div key={idx} className="group relative bg-white dark:bg-zinc-800 p-8 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-black/5 dark:border-white/5 hover:-translate-y-1">
+                <div key={idx} className="group relative rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-2xl">
                   <div className="flex flex-col h-full">
-                    <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                    <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-100 text-sky-700 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">
                       {card.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{card.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{card.desc}</p>
+                    <h3 className="mb-3 text-xl font-bold text-slate-900">{card.title}</h3>
+                    <p className="leading-relaxed text-slate-600">{card.desc}</p>
                   </div>
                 </div>
               ))}
@@ -132,14 +178,13 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="mt-auto border-t border-black/10 dark:border-white/10">
-        <div className="mx-auto max-w-screen-2xl px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-          <p className="text-black/60 dark:text-white/60">© {new Date().getFullYear()} CityCare. All rights reserved.</p>
+      <footer className="mt-auto border-t border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-4 px-5 py-7 text-sm sm:flex-row sm:px-8 lg:px-12">
+          <p className="text-slate-500">© {new Date().getFullYear()} MyDoctor. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="#about" className="hover:underline underline-offset-4">About</Link>
-            <Link href="#services" className="hover:underline underline-offset-4">Services</Link>
-            <Link href="#home" className="hover:underline underline-offset-4">Home</Link>
+            <Link href="#about" className="text-slate-600 transition hover:text-slate-900 hover:underline underline-offset-4">About</Link>
+            <Link href="#services" className="text-slate-600 transition hover:text-slate-900 hover:underline underline-offset-4">Services</Link>
+            <Link href="#home" className="text-slate-600 transition hover:text-slate-900 hover:underline underline-offset-4">Home</Link>
           </div>
         </div>
       </footer>

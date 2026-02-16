@@ -36,19 +36,27 @@ export default async function DashboardPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between mb-8">
-                <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
-                    <p className="text-gray-500 mt-1">Welcome back, {currentUser?.name || 'User'}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+            <div className="rounded-3xl border border-violet-200 bg-gradient-to-r from-violet-600 to-indigo-600 p-8 text-white shadow-xl">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-violet-100">Admin dashboard</p>
+                        <h1 className="mt-2 text-3xl font-black tracking-tight">Platform Overview</h1>
+                        <p className="mt-2 text-violet-100">Welcome back, {currentUser?.name || 'User'}. Monitor users, teams, and growth from one place.</p>
+                    </div>
+                    <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
                         currentUser?.role === "ADMIN"
-                            ? "bg-purple-100 text-purple-800"
-                            : "bg-blue-100 text-blue-800"
+                            ? "bg-white/20 text-white"
+                            : "bg-blue-100/30 text-blue-50"
                     }`}>
                         {currentUser?.role}
                     </span>
+                </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+                <div>
+                    <h2 className="text-2xl font-black tracking-tight text-slate-900">Core Metrics</h2>
+                    <p className="mt-1 text-slate-500">Real-time overview of records in the system</p>
                 </div>
             </div>
 
@@ -83,15 +91,15 @@ export default async function DashboardPage() {
                 />
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="p-6 border-b border-gray-100 flex items-center justify-between">
-                    <h2 className="text-lg font-semibold text-gray-900">Recent Patient Signups</h2>
-                    <a href="/admin/patients" className="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</a>
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="flex items-center justify-between border-b border-slate-200 p-6">
+                    <h2 className="text-lg font-bold text-slate-900">Recent Patient Signups</h2>
+                    <a href="/admin/patients" className="text-sm font-semibold text-violet-700 hover:text-violet-800">View All</a>
                 </div>
                 <div className="overflow-x-auto">
                     {recentPatients.length > 0 ? (
-                        <table className="w-full text-left text-sm text-gray-500">
-                            <thead className="bg-gray-50 text-xs uppercase text-gray-400 font-medium">
+                        <table className="w-full text-left text-sm text-slate-500">
+                            <thead className="bg-slate-50 text-xs font-semibold uppercase text-slate-400">
                                 <tr>
                                     <th className="px-6 py-4">Patient Name</th>
                                     <th className="px-6 py-4">Email</th>
@@ -99,10 +107,10 @@ export default async function DashboardPage() {
                                     <th className="px-6 py-4">Registered</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-100">
+                            <tbody className="divide-y divide-slate-100">
                                 {recentPatients.map((patient) => (
-                                    <tr key={patient.email} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-6 py-4 font-medium text-gray-900">
+                                    <tr key={patient.email} className="transition-colors hover:bg-slate-50">
+                                        <td className="px-6 py-4 font-semibold text-slate-900">
                                             {patient.firstName} {patient.lastName}
                                         </td>
                                         <td className="px-6 py-4">{patient.email}</td>
@@ -120,7 +128,7 @@ export default async function DashboardPage() {
                         </table>
                     ) : (
                         <div className="p-12 text-center">
-                            <p className="text-gray-500">No recent patient signups</p>
+                            <p className="text-slate-500">No recent patient signups</p>
                         </div>
                     )}
                 </div>

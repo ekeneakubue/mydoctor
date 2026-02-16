@@ -2,7 +2,7 @@
 
 ## Overview
 
-CityCare uses a cookie-based authentication system with bcrypt password hashing. The authentication is built with Next.js Server Actions and protects admin routes with middleware.
+MyDoctor uses a cookie-based authentication system with bcrypt password hashing. The authentication is built with Next.js Server Actions and protects admin routes with middleware.
 
 ## Features
 
@@ -41,7 +41,7 @@ When a user logs in:
 5. User is redirected to `/admin`
 
 **Demo Admin Credentials**:
-- Email: `admin@citycare.com`
+- Email: `admin@mydoctor.com`
 - Password: `admin123`
 
 ### 3. Session Management
@@ -257,7 +257,7 @@ npm run dev
 2. Navigate to http://localhost:3000/login
 
 3. Use demo credentials:
-   - Email: `admin@citycare.com`
+   - Email: `admin@mydoctor.com`
    - Password: `admin123`
 
 4. You should be redirected to `/admin` dashboard

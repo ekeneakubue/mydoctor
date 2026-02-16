@@ -103,7 +103,7 @@ When you create a new doctor:
    - Specialization: Cardiology
    - License Number: MD-TEST-999
    - Phone: +1 555 9999
-   - Email: test.doctor@citycare.com
+   - Email: test.doctor@mydoctor.com
    - **Password**: testdoc123
    - Address: 123 Test St
 4. Click **"Create Doctor"**
@@ -132,7 +132,7 @@ The form now includes:
 
 ```
 Email *                    Password *
-[doctor@citycare.com]     [••••••••] 👁️
+[doctor@mydoctor.com]     [••••••••] 👁️
                           Min 6 characters - for doctor login access
 ```
 

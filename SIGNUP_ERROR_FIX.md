@@ -113,7 +113,7 @@ npm run prisma:studio
 ### Test 3: Admin Login Still Works
 ```
 1. Visit /login
-2. Email: admin@citycare.com
+2. Email: admin@mydoctor.com
 3. Password: admin123
 4. ✅ Login works
 5. ✅ Redirected to /admin dashboard

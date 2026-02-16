@@ -11,7 +11,7 @@
 
 Use these credentials to access the admin dashboard:
 
-- **Email:** `admin@citycare.com`
+- **Email:** `admin@mydoctor.com`
 - **Password:** `admin123`
 - **Role:** ADMIN
 - **Login URL:** http://localhost:3000/login
@@ -25,27 +25,27 @@ All sample doctors have the same password for easy testing:
 ### Doctor Logins:
 
 1. **Dr. Sarah Johnson** (Cardiology)
-   - Email: `dr.sarah.johnson@citycare.com`
+   - Email: `dr.sarah.johnson@mydoctor.com`
    - Password: `doctor123`
 
 2. **Dr. Michael Chen** (Neurology)
-   - Email: `dr.michael.chen@citycare.com`
+   - Email: `dr.michael.chen@mydoctor.com`
    - Password: `doctor123`
 
 3. **Dr. Emily Rodriguez** (Pediatrics)
-   - Email: `dr.emily.rodriguez@citycare.com`
+   - Email: `dr.emily.rodriguez@mydoctor.com`
    - Password: `doctor123`
 
 4. **Dr. David Thompson** (Orthopedics)
-   - Email: `dr.david.thompson@citycare.com`
+   - Email: `dr.david.thompson@mydoctor.com`
    - Password: `doctor123`
 
 5. **Dr. Jennifer Lee** (Dermatology)
-   - Email: `dr.jennifer.lee@citycare.com`
+   - Email: `dr.jennifer.lee@mydoctor.com`
    - Password: `doctor123`
 
 6. **Dr. Robert Williams** (Internal Medicine)
-   - Email: `dr.robert.williams@citycare.com`
+   - Email: `dr.robert.williams@mydoctor.com`
    - Password: `doctor123`
 
 **Note**: Doctors currently log in through the same login page. In the future, you can create a separate doctor portal.
@@ -90,7 +90,7 @@ If the demo admin account is not yet created in your database:
 
 1. Make sure your `.env` file contains:
    ```env
-   DEMO_ADMIN_EMAIL="admin@citycare.com"
+   DEMO_ADMIN_EMAIL="admin@mydoctor.com"
    DEMO_ADMIN_PASSWORD="admin123"
    DEMO_ADMIN_NAME="Admin User"
    ```

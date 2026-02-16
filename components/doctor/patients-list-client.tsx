@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Filter, User, Phone, Mail, Calendar, Heart, FileText, AlertCircle, X, MapPin, Shield } from "lucide-react";
+import { Search, User, Phone, Mail, Calendar, Heart, AlertCircle, X, MapPin, Shield } from "lucide-react";
 import { useState } from "react";
 import { Patient } from "@prisma/client";
 
@@ -67,34 +67,34 @@ export function PatientsListClient({ patients }: PatientsListClientProps) {
                 {/* Header */}
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900">My Patients</h1>
-                        <p className="text-gray-500 mt-1">View and manage your patient records</p>
+                        <h1 className="text-2xl font-black tracking-tight text-slate-900">My Patients</h1>
+                        <p className="mt-1 text-slate-500">View and manage your patient records</p>
                     </div>
                     <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-600 font-medium">
+                        <span className="text-sm font-semibold text-slate-600">
                             {filteredPatients.length} Patients
                         </span>
                     </div>
                 </div>
 
                 {/* Search and Filters */}
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                     <div className="flex flex-col sm:flex-row gap-4">
                         <div className="relative flex-1">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                             <input
                                 type="text"
                                 placeholder="Search by name, email, or phone..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                className="w-full rounded-xl border border-slate-300 py-2.5 pl-10 pr-4 text-slate-700 outline-none transition-all focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
                             />
                         </div>
                         <div className="flex gap-3">
                             <select
                                 value={genderFilter}
                                 onChange={(e) => setGenderFilter(e.target.value)}
-                                className="px-4 py-2.5 border border-gray-200 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-600 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
                             >
                                 <option value="ALL">All Genders</option>
                                 <option value="MALE">Male</option>
@@ -108,10 +108,10 @@ export function PatientsListClient({ patients }: PatientsListClientProps) {
                 {/* Patients Grid */}
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {filteredPatients.length === 0 ? (
-                        <div className="col-span-full bg-white p-12 rounded-xl shadow-sm border border-gray-100">
+                        <div className="col-span-full rounded-2xl border border-slate-200 bg-white p-12 shadow-sm">
                             <div className="flex flex-col items-center gap-3">
-                                <User className="text-gray-300" size={48} />
-                                <p className="text-gray-500 text-sm">
+                                <User className="text-slate-300" size={48} />
+                                <p className="text-sm text-slate-500">
                                     {searchTerm || genderFilter !== "ALL"
                                         ? "No patients found matching your filters"
                                         : "No patients assigned yet"}
@@ -123,11 +123,11 @@ export function PatientsListClient({ patients }: PatientsListClientProps) {
                             <div
                                 key={patient.id}
                                 onClick={() => handleViewPatient(patient)}
-                                className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all cursor-pointer group hover:border-blue-300"
+                                className="group cursor-pointer rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-lg"
                             >
                                 {/* Patient Header */}
                                 <div className="flex items-start justify-between mb-4">
-                                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-md">
+                                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-lg font-bold text-white shadow-md">
                                         {getInitials(patient.firstName, patient.lastName)}
                                     </div>
                                     <span className={`px-2.5 py-1 text-xs font-medium rounded-full ${patient.isActive
@@ -140,11 +140,11 @@ export function PatientsListClient({ patients }: PatientsListClientProps) {
 
                                 {/* Patient Name */}
                                 <div className="mb-4">
-                                    <h3 className="font-semibold text-gray-900 text-lg group-hover:text-blue-600 transition-colors">
+                                    <h3 className="text-lg font-semibold text-slate-900 transition-colors group-hover:text-blue-700">
                                         {patient.firstName} {patient.lastName}
                                     </h3>
                                     {patient.dateOfBirth && (
-                                        <p className="text-sm text-gray-500 mt-1">
+                                        <p className="mt-1 text-sm text-slate-500">
                                             {calculateAge(patient.dateOfBirth)} years old
                                             {patient.gender && ` • ${patient.gender.charAt(0) + patient.gender.slice(1).toLowerCase()}`}
                                         </p>
@@ -154,18 +154,18 @@ export function PatientsListClient({ patients }: PatientsListClientProps) {
                                 {/* Patient Info */}
                                 <div className="space-y-2 mb-4">
                                     {patient.email && (
-                                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                                            <Mail size={14} className="text-gray-400" />
+                                        <div className="flex items-center gap-2 text-sm text-slate-600">
+                                            <Mail size={14} className="text-slate-400" />
                                             <span className="truncate">{patient.email}</span>
                                         </div>
                                     )}
-                                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                                        <Phone size={14} className="text-gray-400" />
+                                    <div className="flex items-center gap-2 text-sm text-slate-600">
+                                        <Phone size={14} className="text-slate-400" />
                                         <span>{patient.phone}</span>
                                     </div>
                                     {patient.lastVisit && (
-                                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                                            <Calendar size={14} className="text-gray-400" />
+                                        <div className="flex items-center gap-2 text-sm text-slate-600">
+                                            <Calendar size={14} className="text-slate-400" />
                                             <span>Last visit: {new Date(patient.lastVisit).toLocaleDateString()}</span>
                                         </div>
                                     )}
@@ -188,7 +188,7 @@ export function PatientsListClient({ patients }: PatientsListClientProps) {
                                 </div>
 
                                 {/* View Button */}
-                                <button className="w-full mt-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg group-hover:bg-blue-100 transition-colors">
+                                <button className="mt-4 w-full rounded-lg bg-blue-50 py-2 text-sm font-semibold text-blue-700 transition-colors group-hover:bg-blue-100">
                                     View Full Record
                                 </button>
                             </div>

@@ -53,22 +53,22 @@ export function Navbar() {
     ];
 
     return (
-        <header className="sticky top-0 z-50 border-b border-black/5 dark:border-white/5 bg-background/90 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-            <div className="mx-auto max-w-screen-2xl px-6 py-4 flex items-center justify-between">
+        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/75">
+            <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
                 <Link href="/" className="flex items-center gap-3">
-                    <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                        City<span className="text-blue-400">Care</span>
+                    <span className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+                        My<span className="text-sky-600">Doctor</span>
                     </span>
                 </Link>
 
-                <nav className="hidden md:flex items-center gap-8 text-base font-medium text-muted-foreground">
-                    <Link href="#home" className="text-lg font-bold hover:text-foreground transition-colors hover:underline underline-offset-4 decoration-2 decoration-primary/50">
+                <nav className="hidden items-center gap-8 text-base font-medium text-slate-600 md:flex">
+                    <Link href="#home" className="text-sm font-bold uppercase tracking-wider transition-colors hover:text-slate-900">
                         Home
                     </Link>
-                    <Link href="#about" className="text-lg font-bold hover:text-foreground transition-colors hover:underline underline-offset-4 decoration-2 decoration-primary/50">
+                    <Link href="#about" className="text-sm font-bold uppercase tracking-wider transition-colors hover:text-slate-900">
                         About
                     </Link>
-                    <Link href="#services" className="text-lg font-bold hover:text-foreground transition-colors hover:underline underline-offset-4 decoration-2 decoration-primary/50">
+                    <Link href="#services" className="text-sm font-bold uppercase tracking-wider transition-colors hover:text-slate-900">
                         Services
                     </Link>
                 </nav>
@@ -78,7 +78,7 @@ export function Navbar() {
                     <div className="relative" ref={dropdownRef}>
                         <button
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className="inline-flex items-center gap-2 rounded-full border border-input shadow-sm px-6 py-2.5 text-base font-semibold hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+                            className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:border-slate-400 hover:bg-slate-50"
                         >
                             Login
                             <ChevronDown
@@ -89,34 +89,34 @@ export function Navbar() {
 
                         {/* Dropdown Menu */}
                         {isDropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-72 rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden z-50">
+                            <div className="absolute right-0 z-50 mt-2 w-72 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl">
                                 {loginOptions.map((option) => (
-                                    <div
+                                    <button
                                         key={option.title}
                                         onClick={() => {
                                             router.push(option.href);
                                             setIsDropdownOpen(false);
                                         }}
-                                        className={`flex items-start gap-4 p-4 transition-colors ${option.hoverColor} border-b border-gray-100 last:border-b-0 cursor-pointer`}
+                                        className={`w-full cursor-pointer border-b border-slate-100 p-4 text-left transition-colors last:border-b-0 ${option.hoverColor}`}
                                     >
-                                        <div className={`p-2 rounded-lg ${option.bgColor}`}>
+                                        <div className={`rounded-lg p-2 ${option.bgColor}`}>
                                             <option.icon className={option.color} size={20} />
                                         </div>
                                         <div className="flex-1">
-                                            <h3 className="font-semibold text-gray-900 text-sm mb-0.5">
+                                            <h3 className="mb-0.5 text-sm font-semibold text-slate-900">
                                                 {option.title}
                                             </h3>
-                                            <p className="text-xs text-gray-500">
+                                            <p className="text-xs text-slate-500">
                                                 {option.description}
                                             </p>
                                         </div>
-                                    </div>
+                                    </button>
                                 ))}
                             </div>
                         )}
                     </div>
 
-                    <Link href="#about" className="md:hidden inline-flex items-center rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-base font-semibold shadow hover:bg-primary/90 transition-all">
+                    <Link href="#about" className="inline-flex items-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow transition-all hover:bg-slate-800 md:hidden">
                         Get Started
                     </Link>
                 </div>

@@ -157,7 +157,7 @@ export function CreateDoctorModal({ isOpen, onClose }: CreateDoctorModalProps) {
                             <input
                                 name="email"
                                 type="email"
-                                placeholder="e.g. doctor@citycare.com"
+                                placeholder="e.g. doctor@mydoctor.com"
                                 required
                                 className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
                             />

@@ -1,6 +1,6 @@
 # Database Setup Guide
 
-This guide explains how to set up and populate your CityCare database.
+This guide explains how to set up and populate your MyDoctor database.
 
 ## Prerequisites
 
@@ -45,7 +45,7 @@ npm run prisma:seed
 
 This will create:
 - **1 Admin User** - For logging into the system
-  - Email: `admin@citycare.com`
+  - Email: `admin@mydoctor.com`
   - Password: `admin123`
   
 - **5 Sample Patients** - Test patient records

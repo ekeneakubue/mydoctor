@@ -30,29 +30,29 @@ export function DoctorsList({ doctors, patientId }: DoctorsListProps) {
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Find a Doctor</h1>
-                    <p className="text-gray-500 mt-1">Book an appointment with our specialists</p>
+                    <h1 className="text-2xl font-black tracking-tight text-slate-900">Find a Doctor</h1>
+                    <p className="mt-1 text-slate-500">Book an appointment with our specialists</p>
                 </div>
             </div>
 
             {/* Search and Filter */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:flex-row">
                 <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                     <input
                         type="text"
                         placeholder="Search by doctor name or specialization..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        className="w-full rounded-xl border border-slate-300 py-2.5 pl-10 pr-4 text-slate-700 outline-none transition-all focus:border-emerald-400 focus:ring-2 focus:ring-emerald-200"
                     />
                 </div>
                 <div className="relative min-w-[200px]">
-                    <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                    <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                     <select
                         value={selectedSpecialization}
                         onChange={(e) => setSelectedSpecialization(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white"
+                        className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-4 text-slate-700 outline-none transition-all focus:border-emerald-400 focus:ring-2 focus:ring-emerald-200"
                     >
                         {specializations.map(spec => (
                             <option key={spec} value={spec}>{spec}</option>
@@ -64,10 +64,10 @@ export function DoctorsList({ doctors, patientId }: DoctorsListProps) {
             {/* Doctors Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredDoctors.map(doctor => (
-                    <div key={doctor.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow group">
+                    <div key={doctor.id} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-lg">
                         <div className="p-6">
                             <div className="flex items-start justify-between mb-4">
-                                <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl shadow-inner">
+                                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-xl font-bold text-emerald-700 shadow-inner">
                                     {doctor.firstName[0]}{doctor.lastName[0]}
                                 </div>
                                 <span className={`px-2 py-1 text-xs font-semibold rounded-full ${doctor.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
@@ -75,15 +75,15 @@ export function DoctorsList({ doctors, patientId }: DoctorsListProps) {
                                 </span>
                             </div>
 
-                            <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                            <h3 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-emerald-700">
                                 Dr. {doctor.firstName} {doctor.lastName}
                             </h3>
-                            <div className="flex items-center gap-2 text-blue-600 text-sm font-medium mt-1">
+                            <div className="mt-1 flex items-center gap-2 text-sm font-semibold text-emerald-700">
                                 <Stethoscope size={16} />
                                 {doctor.specialization}
                             </div>
 
-                            <div className="mt-4 space-y-2 text-sm text-gray-500">
+                            <div className="mt-4 space-y-2 text-sm text-slate-500">
                                 <div className="flex items-center gap-2">
                                     <MapPin size={16} />
                                     {doctor.address || "Main Hospital"}
@@ -95,10 +95,10 @@ export function DoctorsList({ doctors, patientId }: DoctorsListProps) {
                             </div>
                         </div>
 
-                        <div className="p-4 bg-gray-50 border-t border-gray-100">
+                        <div className="border-t border-slate-200 bg-slate-50 p-4">
                             <button
                                 onClick={() => setSelectedDoctor(doctor)}
-                                className="w-full py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full rounded-lg bg-emerald-600 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
                                 disabled={!doctor.isActive}
                             >
                                 Book Appointment
@@ -109,7 +109,7 @@ export function DoctorsList({ doctors, patientId }: DoctorsListProps) {
             </div>
 
             {filteredDoctors.length === 0 && (
-                <div className="text-center py-12 text-gray-500">
+                <div className="py-12 text-center text-slate-500">
                     No doctors found matching your criteria.
                 </div>
             )}

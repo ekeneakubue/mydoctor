@@ -47,7 +47,7 @@ export function CreateUserModal({ isOpen, onClose }: CreateUserModalProps) {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-            <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="w-full md:w-1/2 max-w-4xl overflow-hidden rounded-xl bg-white shadow-xl animate-in fade-in zoom-in-95 duration-200">
                 <div className="flex items-center justify-between p-4 border-b border-gray-100">
                     <h2 className="text-lg font-semibold text-gray-900">Add New User</h2>
                     <button
@@ -71,10 +71,10 @@ export function CreateUserModal({ isOpen, onClose }: CreateUserModalProps) {
                     } else {
                         setError(result.error || "Something went wrong");
                     }
-                }} className="p-6 space-y-5">
+                }} className="grid gap-4 p-6 md:grid-cols-2">
 
                     {/* Avatar Upload Section - First Field */}
-                    <div className="flex flex-col items-center justify-center gap-4">
+                    <div className="flex flex-col items-center justify-center gap-4 md:col-span-2">
                         <div className="relative group">
                             <div className={`w-24 h-24 rounded-full flex items-center justify-center overflow-hidden border-2 ${previewUrl ? 'border-blue-500' : 'border-dashed border-gray-300 bg-gray-50'}`}>
                                 {previewUrl ? (
@@ -124,76 +124,74 @@ export function CreateUserModal({ isOpen, onClose }: CreateUserModalProps) {
                     </div>
 
                     {error && (
-                        <div className="p-3 bg-red-50 text-red-500 text-sm rounded-lg">
+                        <div className="rounded-lg bg-red-50 p-3 text-sm text-red-500 md:col-span-2">
                             {error}
                         </div>
                     )}
 
-                    <div className="space-y-4">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Full Name</label>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Full Name</label>
+                        <input
+                            name="name"
+                            type="text"
+                            placeholder="e.g. John Doe"
+                            required
+                            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Email Address</label>
+                        <input
+                            name="email"
+                            type="email"
+                            placeholder="e.g. john@mydoctor.com"
+                            required
+                            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Phone</label>
+                        <input
+                            name="phone"
+                            type="tel"
+                            placeholder="e.g. +1234567890"
+                            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Password</label>
+                        <div className="relative">
                             <input
-                                name="name"
-                                type="text"
-                                placeholder="e.g. John Doe"
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                placeholder="••••••••"
                                 required
-                                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+                                minLength={6}
+                                className="w-full rounded-lg border border-gray-200 px-3 py-2 pr-10 text-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                             />
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Email Address</label>
-                            <input
-                                name="email"
-                                type="email"
-                                placeholder="e.g. john@citycare.com"
-                                required
-                                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
-                            />
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Phone</label>
-                            <input
-                                name="phone"
-                                type="tel"
-                                placeholder="e.g. +1234567890"
-                                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
-                            />
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Password</label>
-                            <div className="relative">
-                                <input
-                                    name="password"
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="••••••••"
-                                    required
-                                    minLength={6}
-                                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm pr-10"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                                >
-                                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Role</label>
-                            <select name="role" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm bg-white">
-                                <option value="PATIENT">Patient</option>
-                                <option value="STAFF">Staff</option>
-                                <option value="ADMIN">Admin</option>
-                            </select>
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition-colors hover:text-gray-600"
+                            >
+                                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                            </button>
                         </div>
                     </div>
 
-                    <div className="pt-4 flex items-center justify-end gap-3 border-t border-gray-100 mt-6">
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Role</label>
+                        <select name="role" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+                            <option value="PATIENT">Patient</option>
+                            <option value="STAFF">Staff</option>
+                            <option value="ADMIN">Admin</option>
+                        </select>
+                    </div>
+
+                    <div className="mt-2 flex items-center justify-end gap-3 border-t border-gray-100 pt-4 md:col-span-2">
                         <button
                             type="button"
                             onClick={handleClose}

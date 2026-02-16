@@ -40,7 +40,7 @@ npm run prisma:seed
 ```
 
 This creates:
-- 1 Admin user (admin@citycare.com / admin123)
+- 1 Admin user (admin@mydoctor.com / admin123)
 - 5 Sample patients (all with password: patient123)
 - 6 Sample doctors (all with password: doctor123)
 
@@ -82,7 +82,7 @@ Press: Ctrl + Shift + R
 ### Test Admin Login
 
 1. Visit http://localhost:3000/login
-2. Email: `admin@citycare.com`
+2. Email: `admin@mydoctor.com`
 3. Password: `admin123`
 4. ✅ Login works
 5. ✅ Redirected to /admin
@@ -136,7 +136,7 @@ Press: Ctrl + Shift + R
 ## 🔐 All Credentials
 
 ### Admin
-- Email: admin@citycare.com
+- Email: admin@mydoctor.com
 - Password: admin123
 
 ### Sample Patients
@@ -144,7 +144,7 @@ Press: Ctrl + Shift + R
 - Password: patient123
 
 ### Sample Doctors
-- Email: dr.sarah.johnson@citycare.com (and 5 others)
+- Email: dr.sarah.johnson@mydoctor.com (and 5 others)
 - Password: doctor123
 
 ## 🔍 Verify Everything is Set Up
@@ -162,7 +162,7 @@ Visit http://localhost:5555 and verify:
 ### Check 2: Test Each Login Type
 
 1. **Admin Login**:
-   - admin@citycare.com / admin123
+   - admin@mydoctor.com / admin123
    - Should redirect to `/admin`
 
 2. **Patient Login**:

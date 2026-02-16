@@ -78,7 +78,7 @@ Shows appointments with:
 2. Enter doctor credentials
 
 **Sample Doctor Credentials:**
-- Email: `dr.sarah.johnson@citycare.com`
+- Email: `dr.sarah.johnson@mydoctor.com`
 - Password: `doctor123`
 
 (All 6 sample doctors use `doctor123` as password)
@@ -142,7 +142,7 @@ After login:
 ### Test Doctor Login Flow:
 ```
 1. Visit /doctor/login
-2. Login with: dr.sarah.johnson@citycare.com / doctor123
+2. Login with: dr.sarah.johnson@mydoctor.com / doctor123
 3. ✅ Redirected to /doctor/dashboard
 4. ✅ See "Welcome, Dr. Sarah"
 5. ✅ See real patient count
@@ -162,12 +162,12 @@ After login:
 
 ### Test All Sample Doctors:
 All these can login and access dashboard:
-- dr.sarah.johnson@citycare.com
-- dr.michael.chen@citycare.com
-- dr.emily.rodriguez@citycare.com
-- dr.david.thompson@citycare.com
-- dr.jennifer.lee@citycare.com
-- dr.robert.williams@citycare.com
+- dr.sarah.johnson@mydoctor.com
+- dr.michael.chen@mydoctor.com
+- dr.emily.rodriguez@mydoctor.com
+- dr.david.thompson@mydoctor.com
+- dr.jennifer.lee@mydoctor.com
+- dr.robert.williams@mydoctor.com
 
 Password for all: `doctor123`
 

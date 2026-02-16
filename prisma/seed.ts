@@ -7,7 +7,7 @@ async function main() {
   console.log('🌱 Starting database seed...')
 
   // Seed Admin User
-  const demoAdminEmail = process.env.DEMO_ADMIN_EMAIL || 'admin@citycare.com'
+  const demoAdminEmail = process.env.DEMO_ADMIN_EMAIL || 'admin@mydoctor.com'
   const demoAdminPassword = process.env.DEMO_ADMIN_PASSWORD || 'admin123'
   const demoAdminName = process.env.DEMO_ADMIN_NAME || 'Admin User'
 
@@ -168,7 +168,7 @@ async function main() {
         specialization: 'Cardiology',
         licenseNumber: 'MD-12345',
         phone: '+1 555-1001',
-        email: 'dr.sarah.johnson@citycare.com',
+        email: 'dr.sarah.johnson@mydoctor.com',
         passwordHash: doctorPasswordHash,
         address: '100 Medical Plaza, Suite 200, New York, NY 10001',
         department: 'Cardiovascular Medicine',
@@ -187,7 +187,7 @@ async function main() {
         specialization: 'Neurology',
         licenseNumber: 'MD-23456',
         phone: '+1 555-1002',
-        email: 'dr.michael.chen@citycare.com',
+        email: 'dr.michael.chen@mydoctor.com',
         passwordHash: doctorPasswordHash,
         address: '100 Medical Plaza, Suite 301, New York, NY 10001',
         department: 'Neuroscience',
@@ -206,7 +206,7 @@ async function main() {
         specialization: 'Pediatrics',
         licenseNumber: 'MD-34567',
         phone: '+1 555-1003',
-        email: 'dr.emily.rodriguez@citycare.com',
+        email: 'dr.emily.rodriguez@mydoctor.com',
         passwordHash: doctorPasswordHash,
         address: '100 Medical Plaza, Suite 150, New York, NY 10001',
         department: 'Pediatrics',
@@ -225,7 +225,7 @@ async function main() {
         specialization: 'Orthopedics',
         licenseNumber: 'MD-45678',
         phone: '+1 555-1004',
-        email: 'dr.david.thompson@citycare.com',
+        email: 'dr.david.thompson@mydoctor.com',
         passwordHash: doctorPasswordHash,
         address: '100 Medical Plaza, Suite 400, New York, NY 10001',
         department: 'Orthopedic Surgery',
@@ -243,7 +243,7 @@ async function main() {
         specialization: 'Dermatology',
         licenseNumber: 'MD-56789',
         phone: '+1 555-1005',
-        email: 'dr.jennifer.lee@citycare.com',
+        email: 'dr.jennifer.lee@mydoctor.com',
         passwordHash: doctorPasswordHash,
         address: '100 Medical Plaza, Suite 250, New York, NY 10001',
         department: 'Dermatology',
@@ -261,7 +261,7 @@ async function main() {
         specialization: 'Internal Medicine',
         licenseNumber: 'MD-67890',
         phone: '+1 555-1006',
-        email: 'dr.robert.williams@citycare.com',
+        email: 'dr.robert.williams@mydoctor.com',
         passwordHash: doctorPasswordHash,
         address: '100 Medical Plaza, Suite 180, New York, NY 10001',
         department: 'Internal Medicine',

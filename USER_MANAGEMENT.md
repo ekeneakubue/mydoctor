@@ -1,6 +1,6 @@
 # User Management Guide
 
-Complete guide for managing users in the CityCare admin dashboard.
+Complete guide for managing users in the MyDoctor admin dashboard.
 
 ## Overview
 
@@ -144,7 +144,7 @@ The User Management system allows administrators to create, edit, and delete use
 ### Example Searches:
 
 - "john" - Finds John Smith, john@email.com
-- "@citycare" - Finds all citycare.com emails
+- "@mydoctor" - Finds all mydoctor.com emails
 - Filter: "Admin" - Shows only admin users
 
 ## User Table Columns
@@ -293,7 +293,7 @@ Modal for editing existing users with:
 1. Click "Add User"
 2. Enter:
    - Name: Admin User
-   - Email: admin2@citycare.com
+   - Email: admin2@mydoctor.com
    - Password: securepass123
    - Role: ADMIN
 3. Click "Create User"

@@ -3,11 +3,10 @@ import { ReactNode } from "react";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-slate-50">
             <Sidebar />
-            {/* Main content with left padding to account for fixed sidebar */}
-            <main className="lg:pl-64 min-h-screen bg-gray-50">
-                <div className="p-8">
+            <main className="min-h-screen lg:pl-72">
+                <div className="mx-auto w-full max-w-[1600px] p-4 sm:p-6 lg:p-8">
                     {children}
                 </div>
             </main>

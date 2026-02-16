@@ -29,7 +29,7 @@ export default async function DoctorSchedulePage() {
 
     return (
         <div className="flex flex-col h-[calc(100vh-100px)]">
-            <h1 className="text-2xl font-bold text-gray-900 mb-6">Schedule</h1>
+            <h1 className="mb-6 text-2xl font-black tracking-tight text-slate-900">Schedule</h1>
             <ScheduleCalendar appointments={appointments as any} />
         </div>
     );

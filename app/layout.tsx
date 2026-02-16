@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CityCare – Health Consultation",
-  description: "Book trusted online consultations and manage your health with CityCare.",
+  title: "MyDoctor – Health Consultation",
+  description: "Book trusted online consultations and manage your health with MyDoctor.",
 };
 
 export default function RootLayout({

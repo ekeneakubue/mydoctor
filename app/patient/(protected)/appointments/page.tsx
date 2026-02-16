@@ -34,24 +34,24 @@ export default async function MyAppointmentsPage() {
         <div className="space-y-6">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">My Appointments</h1>
-                    <p className="text-gray-500 mt-1">Manage new booking and view history</p>
+                    <h1 className="text-2xl font-black tracking-tight text-slate-900">My Appointments</h1>
+                    <p className="mt-1 text-slate-500">Manage new booking and view history</p>
                 </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 {appointments.length === 0 ? (
-                    <div className="p-12 text-center text-gray-500">
-                        <Calendar className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                        <h3 className="text-lg font-medium text-gray-900">No appointments yet</h3>
+                    <div className="p-12 text-center text-slate-500">
+                        <Calendar className="mx-auto mb-4 h-12 w-12 text-slate-400" />
+                        <h3 className="text-lg font-semibold text-slate-900">No appointments yet</h3>
                         <p className="mt-1">Book your first consultation with our specialists.</p>
                     </div>
                 ) : (
-                    <div className="divide-y divide-gray-100">
+                    <div className="divide-y divide-slate-100">
                         {appointments.map((apt) => {
                             const isPast = new Date(apt.appointmentDate) < new Date();
                             return (
-                                <div key={apt.id} className="p-6 hover:bg-gray-50 transition-colors">
+                                <div key={apt.id} className="p-6 transition-colors hover:bg-slate-50">
                                     <div className="flex flex-col md:flex-row gap-6 justify-between">
                                         <div className="flex gap-4">
                                             {/* Date Box */}
@@ -63,7 +63,7 @@ export default async function MyAppointmentsPage() {
 
                                             {/* Info */}
                                             <div>
-                                                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                                                <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-900">
                                                     Dr. {apt.doctor.firstName} {apt.doctor.lastName}
                                                     <span className={`text-xs px-2 py-0.5 rounded-full border ${apt.status === "SCHEDULED" ? "bg-green-50 text-green-700 border-green-200" :
                                                             apt.status === "COMPLETED" ? "bg-blue-50 text-blue-700 border-blue-200" :
@@ -72,11 +72,11 @@ export default async function MyAppointmentsPage() {
                                                         {apt.status}
                                                     </span>
                                                 </h3>
-                                                <p className="text-sm text-gray-600 mt-1 flex items-center gap-1">
+                                                <p className="mt-1 flex items-center gap-1 text-sm text-slate-600">
                                                     <Stethoscope size={14} />
                                                     {apt.doctor.specialization}
                                                 </p>
-                                                <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                                                <div className="mt-2 flex items-center gap-4 text-sm text-slate-500">
                                                     <span className="flex items-center gap-1">
                                                         <Clock size={14} />
                                                         {format(apt.appointmentDate, "h:mm a")}
@@ -87,7 +87,7 @@ export default async function MyAppointmentsPage() {
                                                     </span>
                                                 </div>
                                                 {apt.reason && (
-                                                    <p className="text-sm text-gray-500 mt-2 italic">
+                                                    <p className="mt-2 text-sm italic text-slate-500">
                                                         "{apt.reason}"
                                                     </p>
                                                 )}

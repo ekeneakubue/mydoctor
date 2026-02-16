@@ -24,13 +24,13 @@ export default async function SettingsPage() {
     return (
         <div className="space-y-6 max-w-5xl">
             <div className="mb-6">
-                <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
-                <p className="text-gray-500 mt-1">Manage your account preferences and system settings</p>
+                <h1 className="text-2xl font-black tracking-tight text-slate-900">Settings</h1>
+                <p className="mt-1 text-slate-500">Manage your account preferences and system settings</p>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="flex overflow-x-auto border-b border-gray-100">
-                    <button className="flex items-center gap-2 px-6 py-4 border-b-2 border-blue-600 text-blue-600 font-medium bg-blue-50/30 whitespace-nowrap transition-colors">
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="flex overflow-x-auto border-b border-slate-200">
+                    <button className="flex items-center gap-2 whitespace-nowrap border-b-2 border-violet-600 bg-violet-50/40 px-6 py-4 font-semibold text-violet-700 transition-colors">
                         <User size={18} />
                         Profile Settings
                     </button>
@@ -44,8 +44,8 @@ export default async function SettingsPage() {
                     </button>
                 </div>
 
-                <div className="p-8 space-y-8">
-                    <div className="flex flex-col md:flex-row items-start md:items-center gap-6 pb-8 border-b border-gray-100">
+                <div className="space-y-8 p-8">
+                    <div className="flex flex-col items-start gap-6 border-b border-slate-100 pb-8 md:flex-row md:items-center">
                         {currentUser.image ? (
                             <img 
                                 src={currentUser.image} 
@@ -53,13 +53,13 @@ export default async function SettingsPage() {
                                 className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
                             />
                         ) : (
-                            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-4xl text-white font-bold border-4 border-white shadow-lg">
+                            <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-gradient-to-br from-violet-500 to-indigo-600 text-4xl font-bold text-white shadow-lg">
                                 {getInitials(currentUser.name, currentUser.email)}
                             </div>
                         )}
                         <div className="space-y-3">
-                            <h3 className="text-lg font-semibold text-gray-900">Profile Picture</h3>
-                            <p className="text-sm text-gray-500 max-w-xs">
+                            <h3 className="text-lg font-semibold text-slate-900">Profile Picture</h3>
+                            <p className="max-w-xs text-sm text-slate-500">
                                 Upload a new avatar. Recommended size is 256x256px.
                             </p>
                             <div className="flex gap-3">
@@ -121,8 +121,8 @@ export default async function SettingsPage() {
                     </div>
 
                     {/* Account Info */}
-                    <div className="pt-6 border-t border-gray-100">
-                        <h4 className="text-sm font-semibold text-gray-700 mb-4">Account Information</h4>
+                    <div className="border-t border-slate-100 pt-6">
+                        <h4 className="mb-4 text-sm font-semibold text-slate-700">Account Information</h4>
                         <div className="grid gap-4 md:grid-cols-2 text-sm">
                             <div>
                                 <p className="text-gray-500">Account ID</p>
@@ -135,7 +135,7 @@ export default async function SettingsPage() {
                         </div>
                     </div>
 
-                    <div className="pt-6 border-t border-gray-100">
+                    <div className="border-t border-slate-100 pt-6">
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                             <p className="text-sm text-blue-800">
                                 <strong>Note:</strong> Profile editing is currently view-only. To update your information, please contact a system administrator.
