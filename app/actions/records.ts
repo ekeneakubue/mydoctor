@@ -16,7 +16,20 @@ const createRecordSchema = z.object({
     }),
 });
 
-export async function createMedicalRecord(prevState: any, formData: FormData) {
+interface RecordFormState {
+    message: string;
+    errors?: {
+        patientId?: string[];
+        diagnosis?: string[];
+        prescription?: string[];
+        treatment?: string[];
+        notes?: string[];
+        visitDate?: string[];
+    };
+}
+
+export async function createMedicalRecord(prevState: RecordFormState, formData: FormData) {
+    void prevState;
     const user = await getCurrentUser();
 
     if (!user) {

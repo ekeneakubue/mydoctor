@@ -147,7 +147,7 @@ export function RecordsList({ records, patients }: RecordsListProps) {
                                                         Notes
                                                     </h4>
                                                     <p className="text-sm italic text-slate-600">
-                                                        "{record.notes}"
+                                                        &quot;{record.notes}&quot;
                                                     </p>
                                                 </div>
                                             )}

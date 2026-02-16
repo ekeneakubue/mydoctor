@@ -3,6 +3,11 @@
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 
+function getErrorMessage(error: unknown, fallback: string): string {
+    if (error instanceof Error && error.message) return error.message
+    return fallback
+}
+
 export async function deletePatient(patientId: string) {
     try {
         await prisma.patient.delete({
@@ -11,11 +16,11 @@ export async function deletePatient(patientId: string) {
 
         revalidatePath("/admin/patients")
         return { success: true }
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Failed to delete patient:", error)
         return { 
             success: false, 
-            error: error.message || "Failed to delete patient. Please try again." 
+            error: getErrorMessage(error, "Failed to delete patient. Please try again.") 
         }
     }
 }

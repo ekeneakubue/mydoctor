@@ -17,12 +17,10 @@ export default async function DoctorDashboardPage() {
     // Fetch statistics
     const [
         totalPatients,
-        totalDoctors,
         activePatients,
         recentPatients
     ] = await Promise.all([
         prisma.patient.count(),
-        prisma.doctor.count(),
         prisma.patient.count({ where: { isActive: true } }),
         prisma.patient.findMany({
             take: 5,
@@ -45,11 +43,11 @@ export default async function DoctorDashboardPage() {
                     <div>
                         <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-100">Doctor dashboard</p>
                         <h1 className="mt-2 text-3xl font-black tracking-tight">Welcome, Dr. {currentUser.name?.split(' ')[0] || 'Doctor'}</h1>
-                        <p className="mt-2 text-blue-100">Here's your dashboard overview for today</p>
+                        <p className="mt-2 text-blue-100">Here&apos;s your dashboard overview for today</p>
                     </div>
                     <div className="hidden md:flex items-center gap-3">
                         <div className="rounded-xl bg-white/20 px-4 py-2 backdrop-blur-sm">
-                            <div className="text-xs text-blue-100">Today's Date</div>
+                            <div className="text-xs text-blue-100">Today&apos;s Date</div>
                             <div className="text-lg font-bold">
                                 {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                             </div>
@@ -76,7 +74,7 @@ export default async function DoctorDashboardPage() {
                 <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm font-semibold text-slate-500">Today's Appointments</p>
+                            <p className="text-sm font-semibold text-slate-500">Today&apos;s Appointments</p>
                             <p className="mt-2 text-3xl font-black tracking-tight text-slate-900">8</p>
                             <p className="mt-2 text-xs text-blue-700">3 remaining</p>
                         </div>
@@ -118,7 +116,7 @@ export default async function DoctorDashboardPage() {
                 {/* Today's Schedule */}
                 <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <div className="border-b border-slate-200 p-6">
-                        <h2 className="text-lg font-bold text-slate-900">Today's Schedule</h2>
+                        <h2 className="text-lg font-bold text-slate-900">Today&apos;s Schedule</h2>
                         <p className="mt-1 text-sm text-slate-500">Your appointments for today</p>
                     </div>
                     <div className="p-6 space-y-4">

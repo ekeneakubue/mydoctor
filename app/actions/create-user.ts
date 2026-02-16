@@ -34,7 +34,7 @@ export async function createUser(formData: FormData) {
         })
 
         if (!validation.success) {
-            return { success: false, error: validation.error.errors[0].message }
+            return { success: false, error: validation.error.issues[0].message }
         }
 
         const existingUser = await prisma.user.findUnique({ where: { email } })

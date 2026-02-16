@@ -1,6 +1,7 @@
 "use server"
 
 import { prisma } from "@/lib/prisma"
+import { Prisma } from "@prisma/client"
 import bcrypt from "bcryptjs"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
@@ -17,6 +18,19 @@ const doctorSchema = z.object({
     department: z.string().optional(),
     isActive: z.boolean().optional(),
 })
+
+function getErrorMessage(error: unknown, fallback: string): string {
+    if (error instanceof Error && error.message) return error.message
+    return fallback
+}
+
+function getErrorCode(error: unknown): string | undefined {
+    if (typeof error === "object" && error !== null && "code" in error) {
+        const code = (error as { code?: unknown }).code
+        if (typeof code === "string") return code
+    }
+    return undefined
+}
 
 export async function createDoctor(formData: FormData) {
     try {
@@ -48,7 +62,7 @@ export async function createDoctor(formData: FormData) {
             console.error("Validation error:", validation.error)
             return { 
                 success: false, 
-                error: validation.error.errors?.[0]?.message || "Invalid form data" 
+                error: validation.error.issues?.[0]?.message || "Invalid form data" 
             }
         }
 
@@ -90,11 +104,11 @@ export async function createDoctor(formData: FormData) {
 
         revalidatePath("/admin/doctors")
         return { success: true }
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Failed to create doctor:", error)
         return { 
             success: false, 
-            error: error.message || "Failed to create doctor. Please try again." 
+            error: getErrorMessage(error, "Failed to create doctor. Please try again.") 
         }
     }
 }
@@ -146,7 +160,7 @@ export async function updateDoctor(doctorId: string, formData: FormData) {
             console.error("Validation error:", validation.error)
             return { 
                 success: false, 
-                error: validation.error.errors?.[0]?.message || "Invalid form data" 
+                error: validation.error.issues?.[0]?.message || "Invalid form data" 
             }
         }
 
@@ -167,7 +181,7 @@ export async function updateDoctor(doctorId: string, formData: FormData) {
         }
 
         // Prepare update data
-        const updateData: any = {
+        const updateData: Prisma.DoctorUpdateInput = {
             firstName,
             lastName,
             specialization,
@@ -191,17 +205,18 @@ export async function updateDoctor(doctorId: string, formData: FormData) {
 
         revalidatePath("/admin/doctors")
         return { success: true }
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Failed to update doctor:", error)
-        if (error.code === 'P2002') {
+        const errorCode = getErrorCode(error)
+        if (errorCode === 'P2002') {
             return { success: false, error: "License number or email already in use" }
         }
-        if (error.code === 'P2025') {
+        if (errorCode === 'P2025') {
             return { success: false, error: "Doctor not found" }
         }
         return { 
             success: false, 
-            error: error.message || "Failed to update doctor. Please try again." 
+            error: getErrorMessage(error, "Failed to update doctor. Please try again.") 
         }
     }
 }
@@ -214,11 +229,11 @@ export async function deleteDoctor(doctorId: string) {
 
         revalidatePath("/admin/doctors")
         return { success: true }
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Failed to delete doctor:", error)
         return { 
             success: false, 
-            error: error.message || "Failed to delete doctor. Please try again." 
+            error: getErrorMessage(error, "Failed to delete doctor. Please try again.") 
         }
     }
 }

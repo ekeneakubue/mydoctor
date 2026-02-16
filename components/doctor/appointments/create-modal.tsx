@@ -2,8 +2,8 @@
 
 import { useFormStatus } from "react-dom";
 import { createAppointment } from "@/app/actions/appointments";
-import { useEffect, useState, useActionState } from "react";
-import { Calendar as CalendarIcon, Clock, User, FileText, Check, X } from "lucide-react";
+import { useEffect, useActionState } from "react";
+import { Calendar as CalendarIcon, Clock, User, FileText } from "lucide-react";
 import { Patient } from "@prisma/client";
 
 interface CreateAppointmentModalProps {
@@ -13,7 +13,7 @@ interface CreateAppointmentModalProps {
 }
 
 const initialState = {
-    message: null,
+    message: "",
     errors: {}
 };
 
@@ -43,7 +43,6 @@ function SubmitButton() {
 
 export function CreateAppointmentModal({ isOpen, onClose, patients }: CreateAppointmentModalProps) {
     const [state, formAction] = useActionState(createAppointment, initialState);
-    const [selectedDate, setSelectedDate] = useState<string>("");
 
     // Reset form state when modal closes or opens
     useEffect(() => {
@@ -130,7 +129,6 @@ export function CreateAppointmentModal({ isOpen, onClose, patients }: CreateAppo
                                                     type="date"
                                                     name="date"
                                                     id="date"
-                                                    onChange={(e) => setSelectedDate(e.target.value)}
                                                     className="focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-2"
                                                     required
                                                 />

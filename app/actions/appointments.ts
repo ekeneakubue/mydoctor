@@ -14,7 +14,20 @@ const createAppointmentSchema = z.object({
     notes: z.string().optional(),
 });
 
-export async function createAppointment(prevState: any, formData: FormData) {
+interface AppointmentFormState {
+    message: string;
+    errors?: {
+        patientId?: string[];
+        doctorId?: string[];
+        date?: string[];
+        time?: string[];
+        reason?: string[];
+        notes?: string[];
+    };
+}
+
+export async function createAppointment(prevState: AppointmentFormState, formData: FormData) {
+    void prevState;
     const user = await getCurrentUser();
 
     if (!user) {
@@ -51,7 +64,9 @@ export async function createAppointment(prevState: any, formData: FormData) {
         };
     }
 
-    let { patientId, doctorId, date, time, reason, notes } = validatedFields.data;
+    const { date, time, reason, notes } = validatedFields.data;
+    let patientId = validatedFields.data.patientId;
+    let doctorId = validatedFields.data.doctorId;
 
     // Logic:
     // If Doctor: doctorId comes from user.id, patientId comes from form.

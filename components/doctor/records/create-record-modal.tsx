@@ -2,9 +2,9 @@
 
 import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { createMedicalRecord } from "@/app/actions/records.ts"; // Assumes you've created this action
+import { createMedicalRecord } from "@/app/actions/records";
 import { Patient } from "@prisma/client";
-import { Plus, X, Search, User } from "lucide-react";
+import { Plus, Search, User } from "lucide-react";
 
 interface CreateRecordModalProps {
     isOpen: boolean;
@@ -13,7 +13,7 @@ interface CreateRecordModalProps {
 }
 
 const initialState = {
-    message: null,
+    message: "",
     errors: {},
 };
 

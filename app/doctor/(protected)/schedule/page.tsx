@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { ScheduleCalendar } from "@/components/doctor/schedule/calendar";
 import { getCurrentUser } from "@/app/actions/auth";
 import { redirect } from "next/navigation";
+import { Prisma } from "@prisma/client";
 
 export default async function DoctorSchedulePage() {
     const user = await getCurrentUser();
@@ -27,10 +28,21 @@ export default async function DoctorSchedulePage() {
         }
     });
 
+    type AppointmentWithPatient = Prisma.AppointmentGetPayload<{
+        include: {
+            patient: {
+                select: {
+                    firstName: true;
+                    lastName: true;
+                };
+            };
+        };
+    }>;
+
     return (
         <div className="flex flex-col h-[calc(100vh-100px)]">
             <h1 className="mb-6 text-2xl font-black tracking-tight text-slate-900">Schedule</h1>
-            <ScheduleCalendar appointments={appointments as any} />
+            <ScheduleCalendar appointments={appointments as AppointmentWithPatient[]} />
         </div>
     );
 }

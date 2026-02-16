@@ -6,28 +6,39 @@ import { useRouter } from "next/navigation";
 import { CreateUserModal } from "@/components/admin/create-user-modal";
 import { EditUserModal } from "@/components/admin/edit-user-modal";
 import { deleteUser } from "@/app/actions/user-actions";
-import { User, Role } from "@prisma/client";
+import { Role } from "@prisma/client";
+
+type AdminUserListItem = {
+    id: string;
+    email: string;
+    name: string | null;
+    role: Role;
+    phone: string | null;
+    image: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+};
 
 interface UsersClientProps {
-    initialUsers: User[];
+    initialUsers: AdminUserListItem[];
 }
 
 export function UsersClient({ initialUsers }: UsersClientProps) {
     const router = useRouter();
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [selectedUser, setSelectedUser] = useState<User | null>(null);
-    const [deleteConfirmUser, setDeleteConfirmUser] = useState<User | null>(null);
+    const [selectedUser, setSelectedUser] = useState<AdminUserListItem | null>(null);
+    const [deleteConfirmUser, setDeleteConfirmUser] = useState<AdminUserListItem | null>(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [roleFilter, setRoleFilter] = useState<Role | "ALL">("ALL");
 
-    const handleEdit = (user: User) => {
+    const handleEdit = (user: AdminUserListItem) => {
         setSelectedUser(user);
         setIsEditModalOpen(true);
     };
 
-    const handleDeleteClick = (user: User) => {
+    const handleDeleteClick = (user: AdminUserListItem) => {
         setDeleteConfirmUser(user);
     };
 

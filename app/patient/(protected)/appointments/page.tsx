@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/app/actions/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { format } from "date-fns";
-import { Calendar, Clock, MapPin, User, Stethoscope } from "lucide-react";
+import { Calendar, Clock, MapPin, Stethoscope } from "lucide-react";
 
 export default async function MyAppointmentsPage() {
     const user = await getCurrentUser();
@@ -88,7 +88,7 @@ export default async function MyAppointmentsPage() {
                                                 </div>
                                                 {apt.reason && (
                                                     <p className="mt-2 text-sm italic text-slate-500">
-                                                        "{apt.reason}"
+                                                        &quot;{apt.reason}&quot;
                                                     </p>
                                                 )}
                                             </div>

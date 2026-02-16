@@ -92,7 +92,7 @@ export function AppointmentsList({ appointments, patients }: AppointmentsListPro
                     <div className="flex gap-3">
                         <select
                             value={statusFilter}
-                            onChange={(e) => setStatusFilter(e.target.value as any)}
+                            onChange={(e) => setStatusFilter(e.target.value as "ALL" | AppointmentStatus)}
                             className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-600 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
                         >
                             <option value="ALL">All Statuses</option>

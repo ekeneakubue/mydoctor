@@ -108,8 +108,8 @@ export function ScheduleCalendar({ appointments }: ScheduleCalendarProps) {
         const endDate = endOfWeek(monthEnd);
 
         const days = eachDayOfInterval({ start: startDate, end: endDate });
-        const weeks = [];
-        let daysInWeek = [];
+        const weeks: Date[][] = [];
+        let daysInWeek: Date[] = [];
 
         days.forEach((day, i) => {
             if (i % 7 === 0 && i !== 0) {

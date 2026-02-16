@@ -21,8 +21,8 @@ export default function PatientLoginPage() {
     const result = await login(formData);
 
     if (result.success) {
-      const userRole = (result as any).role;
-      const userType = (result as any).userType;
+      const userRole = "role" in result ? result.role : undefined;
+      const userType = "userType" in result ? result.userType : undefined;
       
       if (userRole === 'ADMIN' || userRole === 'STAFF') {
         router.push("/admin");

@@ -4,12 +4,23 @@ import { X, Upload, User as UserIcon, Trash2, Eye, EyeOff, Loader2 } from "lucid
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { updateUser } from "@/app/actions/user-actions";
-import { User } from "@prisma/client";
+import { Role } from "@prisma/client";
+
+type EditableUser = {
+    id: string;
+    email: string;
+    name: string | null;
+    role: Role;
+    phone: string | null;
+    image: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+};
 
 interface EditUserModalProps {
     isOpen: boolean;
     onClose: () => void;
-    user: User;
+    user: EditableUser;
     onSuccess: () => void;
 }
 

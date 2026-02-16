@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/app/actions/auth";
 import { redirect } from "next/navigation";
 import { format } from "date-fns";
-import { FileText, Calendar, Stethoscope, Clock, Pill } from "lucide-react";
+import { FileText, Calendar, Stethoscope, Pill } from "lucide-react";
 
 export default async function MedicalRecordsPage() {
     const user = await getCurrentUser();
@@ -91,9 +91,9 @@ export default async function MedicalRecordsPage() {
                                         {/* Notes Section */}
                                         {record.notes && (
                                             <div className="mt-2 border-t border-slate-100 pt-2">
-                                                <p className="mb-1 text-xs font-semibold uppercase text-slate-400">Doctor's Notes</p>
+                                                <p className="mb-1 text-xs font-semibold uppercase text-slate-400">Doctor&apos;s Notes</p>
                                                 <p className="text-sm italic text-slate-600">
-                                                    "{record.notes}"
+                                                    &quot;{record.notes}&quot;
                                                 </p>
                                             </div>
                                         )}

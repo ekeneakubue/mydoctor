@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma"
 import { Role } from "@prisma/client"
+import { Prisma } from "@prisma/client"
 import bcrypt from "bcryptjs"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
@@ -18,6 +19,19 @@ const updateUserSchema = z.object({
     ]).optional(),
     role: z.nativeEnum(Role),
 })
+
+function getErrorMessage(error: unknown, fallback: string): string {
+    if (error instanceof Error && error.message) return error.message
+    return fallback
+}
+
+function getErrorCode(error: unknown): string | undefined {
+    if (typeof error === "object" && error !== null && "code" in error) {
+        const code = (error as { code?: unknown }).code
+        if (typeof code === "string") return code
+    }
+    return undefined
+}
 
 export async function updateUser(userId: string, formData: FormData) {
     try {
@@ -38,7 +52,7 @@ export async function updateUser(userId: string, formData: FormData) {
 
         if (!validation.success) {
             console.error("Validation error:", validation.error)
-            return { success: false, error: validation.error.errors?.[0]?.message || "Invalid form data" }
+            return { success: false, error: validation.error.issues?.[0]?.message || "Invalid form data" }
         }
 
         // Check if email is being changed and if it's already taken by another user
@@ -73,7 +87,7 @@ export async function updateUser(userId: string, formData: FormData) {
         }
 
         // Prepare update data
-        const updateData: any = {
+        const updateData: Prisma.UserUpdateInput = {
             name,
             email,
             role,
@@ -97,17 +111,18 @@ export async function updateUser(userId: string, formData: FormData) {
 
         revalidatePath("/admin/users")
         return { success: true }
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Failed to update user:", error)
         // Log more details for debugging
-        if (error.code === 'P2002') {
+        const errorCode = getErrorCode(error)
+        if (errorCode === 'P2002') {
             return { success: false, error: "Email already in use" }
         }
-        if (error.code === 'P2025') {
+        if (errorCode === 'P2025') {
             return { success: false, error: "User not found" }
         }
         // Return more specific error message
-        const errorMessage = error.message || "Failed to update user. Please try again."
+        const errorMessage = getErrorMessage(error, "Failed to update user. Please try again.")
         return { success: false, error: errorMessage }
     }
 }

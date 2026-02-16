@@ -21,6 +21,19 @@ const signupSchema = z.object({
     confirmPassword: z.string().min(1, "Please confirm your password"),
 })
 
+function getErrorMessage(error: unknown, fallback: string): string {
+    if (error instanceof Error && error.message) return error.message
+    return fallback
+}
+
+function getErrorCode(error: unknown): string | undefined {
+    if (typeof error === "object" && error !== null && "code" in error) {
+        const code = (error as { code?: unknown }).code
+        if (typeof code === "string") return code
+    }
+    return undefined
+}
+
 export async function login(formData: FormData) {
     try {
         const email = formData.get("email") as string
@@ -31,7 +44,7 @@ export async function login(formData: FormData) {
         if (!validation.success) {
             return { 
                 success: false, 
-                error: validation.error.errors?.[0]?.message || "Invalid form data"
+                error: validation.error.issues?.[0]?.message || "Invalid form data"
             }
         }
 
@@ -216,7 +229,7 @@ export async function signup(formData: FormData) {
         if (!validation.success) {
             return { 
                 success: false, 
-                error: validation.error.errors?.[0]?.message || "Invalid form data"
+                error: validation.error.issues?.[0]?.message || "Invalid form data"
             }
         }
 
@@ -257,17 +270,19 @@ export async function signup(formData: FormData) {
 
         // Don't create session - user needs to login
         return { success: true }
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Signup error:", error)
         
         // Handle specific Prisma errors
-        if (error.code === 'P2002') {
+        const errorCode = getErrorCode(error)
+        if (errorCode === 'P2002') {
             return { success: false, error: "Email already in use" }
         }
-        if (error.code === 'P2003') {
+        if (errorCode === 'P2003') {
             return { success: false, error: "Invalid data provided" }
         }
-        if (error.message?.includes('passwordHash')) {
+        const message = getErrorMessage(error, "An error occurred during signup")
+        if (message.includes('passwordHash')) {
             return { 
                 success: false, 
                 error: "Database not updated. Please run: npm run prisma:push" 
@@ -276,7 +291,7 @@ export async function signup(formData: FormData) {
         
         return { 
             success: false, 
-            error: error.message || "An error occurred during signup" 
+            error: message 
         }
     }
 }
