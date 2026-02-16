@@ -21,11 +21,7 @@ import {
 } from "date-fns";
 import {
     ChevronLeft,
-    ChevronRight,
-    Calendar as CalendarIcon,
-    Clock,
-    User,
-    MoreHorizontal
+    ChevronRight
 } from "lucide-react";
 
 type ViewType = "day" | "week" | "month";
@@ -383,7 +379,7 @@ export function ScheduleCalendar({ appointments }: ScheduleCalendarProps) {
                                                 )}
                                                 {apt.notes && (
                                                     <div className="mt-1 text-sm opacity-80 italic">
-                                                        "{apt.notes}"
+                                                        &quot;{apt.notes}&quot;
                                                     </div>
                                                 )}
                                             </div>

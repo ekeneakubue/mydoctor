@@ -1,12 +1,11 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect } from "react";
 import { createAppointment } from "@/app/actions/appointments";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { Calendar as CalendarIcon, Clock, Stethoscope, X } from "lucide-react";
-import { format } from "date-fns";
+import { Calendar as CalendarIcon, Stethoscope, X } from "lucide-react";
 import { Doctor } from "@prisma/client";
 
 interface BookAppointmentModalProps {
